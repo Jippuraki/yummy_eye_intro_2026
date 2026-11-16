@@ -3,17 +3,162 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="YUMMY EYE — 음식의 색과 질감을 아이웨어로 옮긴 프로젝트.">
-<title>YUMMY EYE | Project</title>
-<style>
-*{box-sizing:border-box}body{margin:0;min-height:100svh;background:#fff8eb;color:#34221c;font-family:Arial,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;display:grid;place-items:center;padding:28px}main{width:min(100%,680px);padding:clamp(28px,7vw,64px);border-top:12px solid #be3026;border-bottom:12px solid #be3026;background:#fffdf6}.eyebrow{font-size:12px;line-height:1.8;letter-spacing:2px;color:#356a81}h1{font-size:clamp(52px,13vw,90px);line-height:.95;margin:30px 0;color:#be3026;letter-spacing:-4px}h2{font-size:clamp(20px,5vw,27px);line-height:1.5;word-break:keep-all}p{font-size:16px;line-height:1.9;word-break:keep-all}.corners{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0}.corners span{border:1px solid currentColor;border-radius:100px;padding:8px 14px;font-weight:bold;font-size:13px}.corners span:nth-child(2){color:#187638}.corners span:nth-child(3){color:#397fa8}footer{margin-top:36px;padding-top:20px;border-top:1px solid #dbcab8;font-size:13px;line-height:1.7;color:#79675c}
-</style>
+<meta name="theme-color" content="#C3302A">
+<meta name="description" content="YUMMY EYE — 음식 포장을 뜯으면 안경이 나오는 그로서란트 아이웨어. ATC 2026 전시 안내, 모델 메뉴판, 디자이너 이야기.">
+<meta property="og:title" content="YUMMY EYE | 오늘, 어떤 맛을 쓰실래요?">
+<meta property="og:description" content="ATC 2026 · 11.26–29 · 서강대학교 X관. 전시 안내와 46가지 안경 메뉴판.">
+<title>YUMMY EYE | 전시 안내</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
-<body><main>
-<div class="eyebrow">GROCERANT · EYEWEAR OF TASTE</div>
-<h1>YUMMY<br>EYE</h1>
-<h2>오늘, 어떤 맛의 안경을 고르시겠어요?</h2>
-<p>음식의 색과 질감을 아이웨어로 옮겼습니다.<br>취향을 고르고, 오늘의 안경을 만나보세요.</p>
-<div class="corners"><span>DELI</span><span>FRESH</span><span>BEVERAGE</span></div>
-<footer>프로젝트 소개 페이지를 준비하고 있습니다.<br>이 주소에서 새로운 소식을 만나보실 수 있습니다.</footer>
-</main></body></html>
+<body>
+
+<header class="top">
+  <a class="sign" href="#top"><img src="assets/logo-yummyeye.svg" alt="yummy eye"><b>GROCERANT</b></a>
+  <div class="awning" aria-hidden="true"><i class="aw-stripes"></i><i class="aw-scallop"></i></div>
+  <nav class="tabs" id="tabs">
+    <a href="#guide">이용 안내</a><a href="#menu">메뉴판</a><a href="#chef">셰프</a><a href="#gallery">화보</a>
+  </nav>
+</header>
+
+<!-- 히어로: 레드 깅엄 식탁 위 접시 -->
+<section class="hero" id="top">
+  <div class="plate">
+    <img src="assets/plate.png" alt="">
+    <div class="plate-in">
+      <img class="logo" src="assets/logo-yummyeye.svg" alt="yummy eye">
+      <p class="tagline">GROCERANT · EYEWEAR OF TASTE</p>
+      <h1 class="title">YUMMY EYE</h1>
+      <p class="sub">오늘, 어떤 맛을 쓰실래요?</p>
+    </div>
+  </div>
+  <img class="basket" src="assets/basket.png" alt="">
+  <img class="cutlery" src="assets/cutlery.png" alt="">
+  <p class="when">ATC 2026 · 11.26 – 11.29 · 서강대학교 X관</p>
+  <div class="btns">
+    <a class="pill pill-red" href="#guide">처음이라면, 이용 안내</a>
+    <a class="pill pill-pink" href="#menu">메뉴판 보기</a>
+  </div>
+</section>
+
+<main>
+  <!-- 한 줄 정의 -->
+  <section class="intro">
+    <div class="card">
+      <h2>음식 포장을 뜯으면,<br>안경이 나옵니다.</h2>
+      <p>YUMMY EYE는 음식의 색과 질감, 그리고 포장을 아이웨어로 옮긴 브랜드예요. 도시락에 담긴 델리, 트레이에 담긴 신선 식품, 팩에 담긴 음료처럼 안경도 맛별로 골라 담아 보세요.</p>
+      <div class="stamps">
+        <img src="assets/stamp-deli.png" alt="Deli">
+        <img src="assets/stamp-fresh.png" alt="Fresh">
+        <img src="assets/stamp-beverage.png" alt="Beverage">
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 이용 안내 -->
+  <section class="sec" id="guide">
+    <p class="sec-no">01 · HOW TO DINE</p>
+    <h2 class="sec-title">이용 안내</h2>
+    <p class="sec-lead">처음 오셨다면 여기부터. 한 바퀴 도는 데 10분이면 충분해요.</p>
+
+    <div class="info">
+      <dl>
+        <div><dt>전시</dt><dd>ATC 2026 (Art&amp;Technology Conference)</dd></div>
+        <div><dt>장소</dt><dd>서강대학교 X관</dd></div>
+        <div><dt>기간</dt><dd>2026. 11. 26 (목) – 11. 29 (일)</dd></div>
+        <div><dt>영업시간</dt><dd>매일 11:00 – 22:00</dd></div>
+        <div><dt>셰프 상주</dt><dd>26·27일 종일 · 28·29일 18:00 – 22:00</dd></div>
+      </dl>
+    </div>
+
+    <h3 class="h3">즐기는 순서</h3>
+    <ol class="steps">
+      <li><b>계산대에서 맛 테스트</b><span>iMac 앞에서 취향 질문 12개와 얼굴 스캔. 3분이면 나만의 맛이 나와요. 급하면 얼굴만 보는 '간편 식품' 코스도 있어요.</span></li>
+      <li><b>영수증 받기</b><span>오늘의 맛, 어울리는 안경 레시피, 추천 모델이 영수증으로 나와요. 들고 다니면서 보세요.</span></li>
+      <li><b>실물 시착</b><span>테이블 위 7가지 실물 안경은 직접 써볼 수 있어요. 메뉴판에서 '실물' 도장이 찍힌 모델이에요.</span></li>
+      <li><b>메뉴판과 포장 구경</b><span>도시락, 신선 트레이, 우유팩. 포장을 열면 안경이 나와요. 이 페이지의 메뉴판에서도 46가지를 다 볼 수 있어요.</span></li>
+      <li><b>영수증 QR로 다시 맛보기</b><span>영수증 아래 QR을 찍으면 결과를 휴대폰으로 다시 볼 수 있어요.</span></li>
+    </ol>
+
+    <h3 class="h3">6가지 맛</h3>
+    <p class="h3-lead">맛 테스트는 취향을 6가지 맛으로 나눠요. 가장 진한 맛이 '주맛', 한 꼬집 들어간 맛이 '부맛'이에요.</p>
+    <div class="tastes" id="taste-list"></div>
+
+    <h3 class="h3">자주 묻는 질문</h3>
+    <div class="faq">
+      <details><summary>카메라가 제 얼굴을 저장하나요?</summary><p>아니요. 얼굴 사진은 저장하거나 전송하지 않아요. 화면 안에서 얼굴 길이, 가장 넓은 곳, 턱선만 재고 바로 버려요. 이름이나 연락처도 받지 않아요.</p></details>
+      <details><summary>AI가 본 얼굴형이 틀린 것 같아요.</summary><p>확인 화면에서 '다른 얼굴형이에요'를 누르고 세 가지(길이 · 넓은 곳 · 턱선)를 직접 고르면 돼요. 카메라는 참고용 조리 도구일 뿐, 간은 내가 맞춥니다.</p></details>
+      <details><summary>영수증에 있는 말이 무슨 뜻이에요?</summary><p><b>셰잎</b>은 안경테 모양, <b>다리(템플)</b>는 귀에 거는 부분, <b>브릿지</b>는 두 렌즈를 잇는 코 위 부분이에요. <b>아세테이트</b>는 두께감 있는 뿔테 소재, <b>틴트</b>는 옅은 색이 들어간 렌즈예요.</p></details>
+      <details><summary>어떤 안경을 직접 써볼 수 있나요?</summary><p>실물은 7가지예요: 쫀득한 화이트 당고, 케첩, 오믈렛, 포도, 우유와 컬러 시리얼, 미디엄 레어, 고등어. <a href="#menu" data-atc="1">실물만 모아보기</a></p></details>
+      <details><summary>안경을 살 수 있나요?</summary><p>지금은 전시를 위해 차린 컨셉 컬렉션이라 판매하지 않아요. 궁금한 점은 셰프에게 직접 물어보시거나 <a href="#counter">계산대</a>의 연락처로 남겨주세요.</p></details>
+      <details><summary>결과를 나중에 다시 볼 수 있나요?</summary><p>영수증 아래 QR을 휴대폰으로 찍으면 같은 결과가 다시 열려요. 영수증을 잃어버렸다면 <a href="https://yummy-taste-test.vercel.app/">맛 테스트</a>를 휴대폰으로 다시 해봐도 돼요.</p></details>
+    </div>
+  </section>
+
+  <!-- 02 메뉴판 -->
+  <section class="sec" id="menu">
+    <p class="sec-no">02 · MENU</p>
+    <h2 class="sec-title">오늘의 메뉴판</h2>
+    <p class="sec-lead">델리 키친, 프레시 픽스, 음료 냉장고. 46가지 맛 중 하나를 눌러 열어보세요.</p>
+    <div class="cat-tabs" id="cat-tabs"></div>
+    <div class="filters">
+      <div class="chips" id="taste-filter"></div>
+      <button class="chip chip-atc" id="atc-filter" type="button">실물만</button>
+    </div>
+    <div class="board" id="board"></div>
+  </section>
+
+  <!-- 03 셰프 -->
+  <section class="sec" id="chef">
+    <p class="sec-no">03 · TODAY'S CHEF</p>
+    <h2 class="sec-title">오늘의 셰프</h2>
+    <div class="chef">
+      <div class="chef-photo" aria-label="셰프 사진 자리">사진 준비 중</div>
+      <div class="chef-txt">
+        <p class="chef-name">셰프 이름 <span class="todo">준비 중</span></p>
+        <p class="chef-dept">서강대학교 아트앤테크놀로지학과</p>
+        <div class="chef-links"><span class="pill pill-sm is-off">Instagram 준비 중</span><span class="pill pill-sm is-off">Portfolio 준비 중</span></div>
+      </div>
+    </div>
+    <h3 class="h3">레시피 노트</h3>
+    <div class="notes">
+      <article class="note"><b>왜 음식 포장이었냐면</b><p>안경을 고를 때 우리는 '어울리는지'만 따져요. 음식을 고를 때처럼 '오늘 뭐가 당기는지'로 고르면 어떨까 싶었어요.</p></article>
+      <article class="note"><b>맛을 얼굴에 붙이는 법</b><p>12개 질문의 답을 6가지 맛으로 나누고, 얼굴형으로 셰잎을 맞춰요. 맛은 취향, 셰잎은 얼굴. 둘이 만나면 한 접시가 돼요.</p></article>
+      <article class="note"><b>주방에서 있었던 일</b><p>3D 모델링, 출력, 도장까지 직접 했어요. 제작 과정 사진은 곧 올라와요.</p></article>
+      <article class="note"><b>포장이 먼저 보이는 안경</b><p>도시락, 신선 트레이, 우유팩. 안경을 꺼내는 순간까지가 하나의 메뉴예요.</p></article>
+    </div>
+  </section>
+
+  <!-- 04 화보 -->
+  <section class="sec" id="gallery">
+    <p class="sec-no">04 · LOOKBOOK</p>
+    <h2 class="sec-title">화보 갤러리</h2>
+    <p class="sec-lead">각 라인의 대표 맛을 쓴 모델 컷이 곧 차려져요. AI로 만든 이미지예요.</p>
+    <div class="soon-box"><b>조리 중</b><span>11월 18일(수) 전후로 올라와요</span></div>
+  </section>
+
+  <!-- 계산대 -->
+  <section class="sec counter" id="counter">
+    <p class="sec-no">COUNTER</p>
+    <h2 class="sec-title">계산대</h2>
+    <div class="btns">
+      <a class="pill pill-red" href="https://yummy-taste-test.vercel.app/">휴대폰으로 맛 테스트</a>
+      <span class="pill pill-pink is-off">Instagram 준비 중</span>
+    </div>
+  </section>
+</main>
+
+<footer>YUMMY EYE · ATC 2026<br>잘 드셨나요? 다음 메뉴도 이 주소에서 차려집니다.</footer>
+
+<!-- 모델 상세 (메뉴판 카드를 누르면 열림) -->
+<div class="sheet hidden" id="sheet" role="dialog" aria-modal="true">
+  <div class="sheet-bg" data-close="1"></div>
+  <div class="sheet-in">
+    <button class="sheet-x" type="button" data-close="1">닫기</button>
+    <div id="sheet-body"></div>
+  </div>
+</div>
+
+<script src="data/models.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
