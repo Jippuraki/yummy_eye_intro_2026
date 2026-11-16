@@ -136,7 +136,20 @@
   }
   window.addEventListener("scroll", onScroll);
 
+  // 화보 빈자리: 라인별 대표 컷 1장씩 (사진을 받으면 assets/gallery/<라인>.jpg로 교체)
+  function renderGallerySlots() {
+    var h = "";
+    each(CATEGORY_ORDER, function (c) {
+      for (var key in LINES) {
+        if (LINES[key].category !== c) continue;
+        h += '<div class="slot"><b>' + c + " - " + key + "</b><span>" + esc(LINES[key].ko) + " 라인 대표 모델을 쓴 AI 모델 컷이 들어갈 자리예요.</span></div>";
+      }
+    });
+    $("gallery-slots").innerHTML = h;
+  }
+
   // 시작
+  renderGallerySlots();
   renderTastes();
   renderMenu();
   onScroll();
