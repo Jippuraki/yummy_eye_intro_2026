@@ -174,13 +174,6 @@ section[id] { scroll-margin-top: 58px; }
 .chef-role { font: 700 11px/1 Arial, sans-serif; letter-spacing: .14em; color: var(--ketchup); }
 .chef-photo { background: #FFE9A6; }
 .chef-photo img { width: auto; height: 88%; margin-top: 10%; -o-object-fit: contain; object-fit: contain; }
-/* 지피 이야기 */
-.story { list-style: none; counter-reset: st; border-left: 3px solid var(--yolk); margin-left: 12px; padding-left: 0; }
-.story li { position: relative; counter-increment: st; padding: 0 0 18px 26px; }
-.story li::before { content: counter(st); position: absolute; left: -15px; top: 0; width: 27px; height: 27px; border-radius: 50%; background: var(--yolk); color: var(--demi); font-weight: 900; font-size: 14px; line-height: 27px; text-align: center; }
-.story b { display: block; font-weight: 900; font-size: 17px; color: var(--ink); line-height: 27px; }
-.story p { margin-top: 2px; font-size: 14px; line-height: 1.7; }
-
 /* ── 화보 */
 .soon-box { margin-top: 22px; padding: 34px 16px; border: 3px dashed var(--ketchup); border-radius: 16px; text-align: center; background: #fff; }
 .soon-box b { display: block; font-family: var(--f-script); font-size: 28px; color: var(--ketchup); }
