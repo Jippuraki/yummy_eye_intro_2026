@@ -36,9 +36,9 @@ var MODELS = [
   { id: "dango-buldak",      line: "Dango", name: "Buldak",        ko: "불닭 소스", frame: "레드 외부·베이지 이너", lens: "투명", tastes: ["spicy", "umami"], keywords: ["화끈한", "선명한 레드", "이중 배색"] },
   { id: "dango-mintchoco",   line: "Dango", name: "Mint Choco",    ko: "민트초코", frame: "앰버 호피·민트 이너", lens: "투명", tastes: ["sweet", "bitter"], keywords: ["호불호", "반전 매력", "상쾌한"] },
   // ── Deli · Omurice
-  { id: "omurice-ketchup",   line: "Omurice", name: "Ketchup Holic", ko: "케첩", frame: "딥 버건디", hex: "#650C0C", lens: "에그옐로", lensHex: "#F4D88D", tastes: ["sour", "sweet"], keywords: ["새콤달콤", "경양식", "에그옐로 렌즈"], atc: true },
+  { id: "omurice-ketchup",   line: "Omurice", name: "Ketchup Holic", ko: "케첩", frame: "딥 버건디", hex: "#650C0C", lens: "다크 버건디", lensHex: "#5A1418", tastes: ["sour", "sweet"], keywords: ["새콤달콤", "경양식", "버건디 렌즈"], atc: true },
   { id: "omurice-demiglace", line: "Omurice", name: "Demi-Glace",    ko: "데미글라스 소스", frame: "다크 브라운", hex: "#3C1A0D", lens: "브라운", lensHex: "#62321B", tastes: ["umami", "salty"], keywords: ["진한", "깊은 풍미", "레스토랑"] },
-  { id: "omurice-omelet",    line: "Omurice", name: "Omelet",        ko: "오믈렛", frame: "레드", hex: "#861111", lens: "로즈레드", lensHex: "#B75252", tastes: ["sweet", "spicy"], keywords: ["포근한", "레드 틴트", "정석"], atc: true },
+  { id: "omurice-omelet",    line: "Omurice", name: "Omelet",        ko: "오믈렛", frame: "레드", hex: "#861111", lens: "옐로우", lensHex: "#F4D88D", tastes: ["sweet", "spicy"], keywords: ["포근한", "옐로우 렌즈", "정석"], atc: true },
   // ── Deli · Cutlet
   { id: "cutlet-bumuk",      line: "Cutlet", name: "Bumuk",   ko: "부먹", frame: "다크 브라운·앰버 호피", lens: "브라운 틴트", tastes: ["umami", "sweet"], keywords: ["촉촉한", "소스 듬뿍", "호피"] },
   { id: "cutlet-jjikmuk",    line: "Cutlet", name: "Jjikmuk", ko: "찍먹", frame: "투명 허니 앰버", lens: "브라운 틴트", tastes: ["salty", "umami"], keywords: ["바삭한", "내 방식대로", "허니 앰버"] },
