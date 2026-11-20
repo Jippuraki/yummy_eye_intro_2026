@@ -26,6 +26,9 @@
   function each(a, f) { for (var i = 0; i < a.length; i++) f(a[i], i); }
   function byId(id) { for (var i = 0; i < MODELS.length; i++) if (MODELS[i].id === id) return MODELS[i]; return null; }
   function catOf(m) { return LINES[m.line].category; }
+  // 실물 표시: 테스트 웹과 같이 SHOW_ATC가 켜졌을 때만
+  var SHOWATC = typeof SHOW_ATC === "undefined" ? true : SHOW_ATC;
+  function isAtc(m) { return SHOWATC && !!m.atc; }
   function setCatColor(cat) { document.documentElement.style.setProperty("--cat", CATS[cat].color); }
 
   // ── 6가지 맛 목록 (이용 안내)
@@ -52,10 +55,10 @@
       h += '<button type="button" class="chip' + (state.taste === k ? " on" : "") + '" data-taste="' + k + '">' + TASTES[k].ko + "</button>";
     });
     $("taste-filter").innerHTML = h;
-    $("atc-filter").className = "chip chip-atc" + (state.atc ? " on" : "");
+    $("atc-filter").className = "chip chip-atc" + (state.atc ? " on" : "") + (SHOWATC ? "" : " hidden");
   }
   function matches(m) {
-    if (state.atc && !m.atc) return false;
+    if (state.atc && !isAtc(m)) return false;
     if (state.taste && m.tastes.indexOf(state.taste) < 0) return false;
     return true;
   }
@@ -73,7 +76,7 @@
           '<img loading="lazy" src="assets/models/front/' + m.id + '.png" alt="">' +
           "<b>" + esc(m.ko) + "</b><small>" + esc(m.name) + "</small>" +
           "<em>" + TASTES[m.tastes[0]].ko + " | " + TASTES[m.tastes[1]].ko + "</em>" +
-          "</div>" + (m.atc ? '<span class="badge">실물</span>' : "") + "</button>";
+          "</div>" + (isAtc(m) ? '<span class="badge">실물</span>' : "") + "</button>";
       });
       if (!items) continue;
       h += '<div class="line-h"><b>' + state.cat + " - " + key + "</b><span>" + esc(L.ko) + " · " + esc(L.shapeKo) + "</span><i></i></div>" +
@@ -90,15 +93,16 @@
     var m = byId(id); if (!m) return;
     var L = LINES[m.line], cat = L.category, code = modelCode(m);
     setCatColor(cat);
-    var tag = (typeof MODEL_TAGLINES !== "undefined" && MODEL_TAGLINES[m.id]) || "";
+    var tag = m.desc || (typeof MODEL_TAGLINES !== "undefined" && MODEL_TAGLINES[m.id]) || "";
+    var lv = m.level ? '<span>맛 강도 ' + "●●●".slice(0, m.level) + "○○○".slice(0, 3 - m.level) + "</span>" : "";
     var h = '<p class="sh-code">' + code.code + " · " + CATS[cat].pack + "</p>" +
       '<h3 class="sh-name">' + esc(m.ko) + '<br><span class="sh-en">' + esc(m.name) + "</span></h3>" +
       '<img class="sh-img" src="assets/models/full/' + m.id + '.png" alt="' + esc(m.ko) + ' 안경">' +
       (tag ? '<p class="sh-line">' + esc(tag) + "</p>" : "") +
-      '<p class="sh-tastes"><span>주맛 ' + TASTES[m.tastes[0]].ko + "</span><span>부맛 " + TASTES[m.tastes[1]].ko + "</span></p>" +
+      '<p class="sh-tastes"><span>주맛 ' + TASTES[m.tastes[0]].ko + "</span><span>부맛 " + TASTES[m.tastes[1]].ko + "</span>" + lv + "</p>" +
       '<p class="sh-kw">' + esc(m.keywords.join(" · ")) + "</p>" +
       '<dl class="sh-spec">' + row("셰잎", m.shapeKo || L.shapeKo) + row("프레임", m.frame) + row("렌즈", m.lens) + row("유형", L.type) + "</dl>" +
-      (m.atc ? '<p class="sh-atc">전시장 테이블에서 실물로 써볼 수 있어요.</p>' : "");
+      (isAtc(m) ? '<p class="sh-atc">전시장 테이블에서 실물로 써볼 수 있어요.</p>' : "");
     $("sheet-body").innerHTML = h;
     $("sheet").className = "sheet";
     document.body.style.overflow = "hidden";
