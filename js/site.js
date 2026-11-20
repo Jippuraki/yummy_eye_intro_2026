@@ -62,28 +62,61 @@
     if (state.taste && m.tastes.indexOf(state.taste) < 0) return false;
     return true;
   }
+  // 팜플렛 카드처럼 "주맛 | 부맛 ●●○"
+  function tasteDots(m) {
+    var lv = m.level || 0, d = "";
+    for (var i = 0; i < 3; i++) d += i < lv ? "●" : "○";
+    return esc(TASTES[m.tastes[0]].ko + " | " + TASTES[m.tastes[1]].ko) + (lv ? ' <span class="lv">' + d + "</span>" : "");
+  }
+  var FOLD = { Sushi: 1 };
+  function front(m) { return '<img class="itm-img" loading="lazy" src="assets/models/front/' + m.id + '.png" alt="">'; }
+  function atcBadge(m) { return isAtc(m) ? '<span class="badge">실물</span>' : ""; }
+  // 테스트 웹 메뉴판과 같은 진열: Deli = 델리 키친 메뉴판 / Fresh = 투명 트레이 / Beverage = 음료 냉장고
+  function itemHTML(m, cat) {
+    var d = ' type="button" data-id="' + m.id + '"', code = esc(modelCode(m).code);
+    if (cat === "Fresh") {
+      return '<button class="itm itm-fresh"' + d + '><span class="tray">' + front(m) + '<i class="tray-lid"></i>' +
+        '<span class="f-label"><b>' + esc(m.ko) + "</b><small>" + esc(m.name) + "</small><i>" + tasteDots(m) + "</i></span></span>" +
+        '<span class="itm-code">' + code + "</span>" + atcBadge(m) + "</button>";
+    }
+    if (cat === "Beverage") {
+      return '<button class="itm itm-bev"' + d + ">" + front(m) +
+        '<span class="b-label"><b>' + esc(m.ko) + "</b><small>" + esc(m.name) + "</small><i>" + tasteDots(m) + "</i><em>" + code + "</em></span>" + atcBadge(m) + "</button>";
+    }
+    var fold = FOLD[m.line] ? '<img class="itm-fold" loading="lazy" src="assets/models/fold/' + m.id + '.png" alt=""><span class="itm-fold-t">접이식</span>' : "";
+    return '<button class="itm itm-deli"' + d + ">" + front(m) + fold +
+      '<span class="d-label"><b>' + esc(m.ko) + "</b><small>" + esc(m.name) + "</small><i>" + tasteDots(m) + "</i></span>" + atcBadge(m) + "</button>";
+  }
+  function lineTitle(cat, key) {
+    if (cat === "Fresh") return "Fresh – " + (key === "Vegie" ? "VEGI" : key.toUpperCase());
+    return (cat === "Beverage" ? "Bev" : cat) + " - " + key;
+  }
   function renderBoard() {
     setCatColor(state.cat);
-    var h = '<p class="board-name">' + esc(CATS[state.cat].board) + "</p>", shown = 0;
+    var cat = state.cat, h = "", shown = 0;
     for (var key in LINES) {
       var L = LINES[key];
-      if (L.category !== state.cat) continue;
+      if (L.category !== cat) continue;
       var items = "";
       each(MODELS, function (m) {
         if (m.line !== key || !matches(m)) return;
         shown++;
-        items += '<button type="button" class="item" data-id="' + m.id + '"><div>' +
-          '<img loading="lazy" src="assets/models/front/' + m.id + '.png" alt="">' +
-          "<b>" + esc(m.ko) + "</b><small>" + esc(m.name) + "</small>" +
-          "<em>" + TASTES[m.tastes[0]].ko + " | " + TASTES[m.tastes[1]].ko + "</em>" +
-          "</div>" + (isAtc(m) ? '<span class="badge">실물</span>' : "") + "</button>";
+        items += itemHTML(m, cat);
       });
       if (!items) continue;
-      h += '<div class="line-h"><b>' + state.cat + " - " + key + "</b><span>" + esc(L.ko) + " · " + esc(L.shapeKo) + "</span><i></i></div>" +
-        '<div class="items">' + items + "</div>";
+      var sub = "<span>" + esc(L.ko) + " · " + esc(L.shapeKo) + "</span>";
+      if (cat === "Beverage") {
+        h += '<section class="ln fridge"><h3>' + esc(lineTitle(cat, key)) + sub + '</h3><div class="row">' + items + '</div><span class="fridge-name">' + key + "</span></section>";
+      } else if (cat === "Fresh") {
+        h += '<section class="ln"><h3>' + esc(lineTitle(cat, key)) + sub + '</h3><span class="burst"><img src="assets/stickers/fresh-' + key.toLowerCase() + '.svg" alt=""></span><div class="row">' + items + "</div></section>";
+      } else {
+        h += '<section class="ln"><h3>' + esc(lineTitle(cat, key)) + sub + '</h3><div class="row">' + items + "</div></section>";
+      }
     }
     if (!shown) h += '<p class="empty">이 코너에는 해당 메뉴가 없어요. 다른 코너도 둘러보세요.</p>';
-    $("board").innerHTML = h;
+    var b = $("board");
+    b.className = "board theme-" + cat.toLowerCase();
+    b.innerHTML = '<div class="board-in"><h3 class="board-name">' + esc(CATS[cat].board) + "</h3>" + h + "</div>";
   }
   function renderMenu() { renderCatTabs(); renderTasteFilter(); renderBoard(); }
 
@@ -96,8 +129,10 @@
     var tag = m.desc || (typeof MODEL_TAGLINES !== "undefined" && MODEL_TAGLINES[m.id]) || "";
     var lv = m.level ? '<span>맛 강도 ' + "●●●".slice(0, m.level) + "○○○".slice(0, 3 - m.level) + "</span>" : "";
     var h = '<p class="sh-code">' + code.code + " · " + CATS[cat].pack + "</p>" +
-      '<h3 class="sh-name">' + esc(m.ko) + '<br><span class="sh-en">' + esc(m.name) + "</span></h3>" +
+      '<div class="sh-head"><img class="sh-emoji" src="assets/emoji/' + m.id + '.png" alt="" onerror="this.style.display=\'none\'">' +
+      '<h3 class="sh-name">' + esc(m.ko) + '<br><span class="sh-en">' + esc(m.name) + " · " + esc(m.ko) + "</span></h3></div>" +
       '<img class="sh-img" src="assets/models/full/' + m.id + '.png" alt="' + esc(m.ko) + ' 안경">' +
+      (FOLD[m.line] ? '<p class="sh-fold"><img src="assets/models/fold/' + m.id + '.png" alt="접은 모습"><span>접이식 · 반으로 접어 도시락처럼 쏙</span></p>' : "") +
       (tag ? '<p class="sh-line">' + esc(tag) + "</p>" : "") +
       '<p class="sh-tastes"><span>주맛 ' + TASTES[m.tastes[0]].ko + "</span><span>부맛 " + TASTES[m.tastes[1]].ko + "</span>" + lv + "</p>" +
       '<p class="sh-kw">' + esc(m.keywords.join(" · ")) + "</p>" +
@@ -141,12 +176,16 @@
   window.addEventListener("scroll", onScroll);
 
   // 화보 빈자리: 라인별 대표 컷 1장씩 (사진을 받으면 assets/gallery/<라인>.jpg로 교체)
+  var STICKERS = { Dango: "deli-dango", Omurice: "deli-omurice", Sushi: "deli-sushi", Tteokbokki: "deli-tteokbokki",
+    Vegie: "fresh-vegie", Fruit: "fresh-fruit", Meat: "fresh-meat", Sashimi: "fresh-sashimi",
+    Juice: "bev-juice", Milk: "bev-milk", Wine: "bev-wine", Coffee: "bev-coffee" };
   function renderGallerySlots() {
     var h = "";
     each(CATEGORY_ORDER, function (c) {
       for (var key in LINES) {
         if (LINES[key].category !== c) continue;
-        h += '<div class="slot"><b>' + c + " - " + key + "</b><span>" + esc(LINES[key].ko) + " 라인 대표 모델을 쓴 AI 모델 컷이 들어갈 자리예요.</span></div>";
+        var st = STICKERS[key] ? '<img class="slot-st" loading="lazy" src="assets/stickers/' + STICKERS[key] + '.svg" alt="">' : "";
+        h += '<div class="slot slot-ln">' + st + "<b>" + c + " - " + key + "</b><span>" + esc(LINES[key].ko) + " 라인 대표 모델을 쓴 AI 모델 컷이 들어갈 자리예요.</span></div>";
       }
     });
     $("gallery-slots").innerHTML = h;
