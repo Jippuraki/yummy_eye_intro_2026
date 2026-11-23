@@ -166,14 +166,60 @@
   });
   document.addEventListener("keydown", function (e) { if (e.keyCode === 27) closeModel(); });
 
-  // 상단 탭: 지금 보고 있는 섹션 강조
-  var secIds = ["guide", "menu", "chef", "gallery"];
-  function onScroll() {
-    var y = window.pageYOffset + 90, cur = "";
-    each(secIds, function (id) { var el = $(id); if (el && el.offsetTop <= y) cur = id; });
-    each($("tabs").getElementsByTagName("a"), function (a) { a.className = a.getAttribute("href") === "#" + cur ? "on" : ""; });
+  // ── 좌우로 넘기는 장: 탭·화살표·점·키보드·#링크가 모두 같은 goTo를 쓴다
+  var pagesEl = $("pages"), pageEls = [], cur = 0;
+  each(pagesEl.children, function (el) { if (el.className === "page") pageEls.push(el); });
+  var PAGE_NAMES = { top: "표지", guide: "이용 안내", menu: "메뉴판", chef: "셰프", gallery: "화보", counter: "계산대" };
+  function pageOf(el) { while (el && el !== document) { if (el.className === "page") return pageEls.indexOf(el); el = el.parentNode; } return -1; }
+  function goTo(i, smooth) {
+    i = Math.max(0, Math.min(pageEls.length - 1, i));
+    var x = i * pagesEl.clientWidth;
+    if (smooth !== false && pagesEl.scrollTo && "scrollBehavior" in document.documentElement.style) pagesEl.scrollTo({ left: x, behavior: "smooth" });
+    else pagesEl.scrollLeft = x;
+    setCur(i);
   }
-  window.addEventListener("scroll", onScroll);
+  function setCur(i) {
+    cur = i;
+    var key = pageEls[i].getAttribute("data-page");
+    each($("tabs").getElementsByTagName("a"), function (a) { a.className = a.getAttribute("href") === "#" + key ? "on" : ""; });
+    var d = "";
+    each(pageEls, function (p, k) { d += '<button type="button" data-go="' + k + '" class="' + (k === i ? "on" : "") + '" aria-label="' + PAGE_NAMES[p.getAttribute("data-page")] + '"></button>'; });
+    $("pg-dots").innerHTML = d + "<span>" + PAGE_NAMES[key] + "</span>";
+    $("pg-prev").className = "pg-arrow pg-prev" + (i === 0 ? " off" : "");
+    $("pg-next").className = "pg-arrow pg-next" + (i === pageEls.length - 1 ? " off" : "");
+    var on = $("tabs").getElementsByTagName("a")[i];
+    if (on && on.scrollIntoView && $("tabs").scrollWidth > $("tabs").clientWidth) $("tabs").scrollLeft = on.offsetLeft - 40;
+  }
+  var st;
+  pagesEl.addEventListener("scroll", function () {
+    clearTimeout(st);
+    st = setTimeout(function () { var i = Math.round(pagesEl.scrollLeft / pagesEl.clientWidth); if (i !== cur) setCur(i); }, 80);
+  });
+  window.addEventListener("resize", function () { pagesEl.scrollLeft = cur * pagesEl.clientWidth; });
+  // #링크(탭·버튼·본문 링크): 그 섹션이 있는 장으로 넘기고 장 안에서 위치를 맞춘다
+  function goToTarget(id, smooth) {
+    var el = id === "top" ? pageEls[0] : $(id);
+    var i = pageOf(el); if (i < 0) return false;
+    goTo(i, smooth);
+    var page = pageEls[i];
+    page.scrollTop = el === page || el.parentNode === page && el === page.firstElementChild ? 0 : Math.max(0, el.offsetTop - 10);
+    return true;
+  }
+  document.addEventListener("click", function (e) {
+    var t = closest(e.target, "data-go");
+    if (t) { goTo(+t.getAttribute("data-go")); return; }
+    if (e.target.id === "pg-prev") { goTo(cur - 1); return; }
+    if (e.target.id === "pg-next") { goTo(cur + 1); return; }
+    var a = closest(e.target, "href");
+    if (a && /^#[\w-]+$/.test(a.getAttribute("href")) && goToTarget(a.getAttribute("href").slice(1))) e.preventDefault();
+  });
+  document.addEventListener("keydown", function (e) {
+    if ($("sheet").className.indexOf("hidden") < 0) return;
+    var tag = (e.target.tagName || "").toLowerCase();
+    if (tag === "input" || tag === "textarea") return;
+    if (e.keyCode === 37) goTo(cur - 1);
+    if (e.keyCode === 39) goTo(cur + 1);
+  });
 
   // 화보 빈자리: 라인별 대표 컷 1장씩 (사진을 받으면 assets/gallery/<라인>.jpg로 교체)
   var STICKERS = { Dango: "deli-dango", Omurice: "deli-omurice", Sushi: "deli-sushi", Tteokbokki: "deli-tteokbokki",
@@ -195,10 +241,10 @@
   renderGallerySlots();
   renderTastes();
   renderMenu();
-  onScroll();
-  var mh = /^#m=([\w-]+)/.exec(location.hash);
+  setCur(0);
+  var mh = /^#m=([\w-]+)/.exec(location.hash), hh = /^#([\w-]+)$/.exec(location.hash);
   if (mh && byId(mh[1])) {
     state.cat = catOf(byId(mh[1])); renderMenu();
-    setTimeout(function () { $("menu").scrollIntoView(); openModel(mh[1]); }, 50);
-  }
+    setTimeout(function () { goToTarget("menu", false); openModel(mh[1]); }, 50);
+  } else if (hh) { setTimeout(function () { goToTarget(hh[1], false); }, 50); }
 })();

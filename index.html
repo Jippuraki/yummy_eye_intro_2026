@@ -18,10 +18,13 @@
   <div class="awning" aria-hidden="true"><i class="aw-cap"></i><i class="aw-stripes"></i><i class="aw-scallop"></i></div>
   </div>
   <nav class="tabs" id="tabs">
-    <a href="#guide">이용 안내</a><a href="#menu">메뉴판</a><a href="#chef">셰프</a><a href="#gallery">화보</a>
+    <a href="#top">표지</a><a href="#guide">이용 안내</a><a href="#menu">메뉴판</a><a href="#chef">셰프</a><a href="#gallery">화보</a><a href="#counter">계산대</a>
   </nav>
 </header>
 
+<!-- 메뉴판 넘기듯 좌우로 넘기는 장들 (한 장 = 한 섹션, 장 안에서는 세로 스크롤) -->
+<div class="pages" id="pages">
+<div class="page" data-page="top">
 <!-- 히어로: 레드 깅엄 식탁 위 접시 -->
 <section class="hero" id="top">
   <div class="plate">
@@ -42,7 +45,6 @@
   </div>
 </section>
 
-<main>
   <!-- 한 줄 정의 -->
   <section class="intro">
     <div class="card">
@@ -55,8 +57,11 @@
       </div>
     </div>
   </section>
+  <p class="swipe-hint">옆으로 넘겨 다음 장을 보세요 <b>→</b></p>
+</div>
 
   <!-- 01 이용 안내 -->
+<div class="page" data-page="guide">
   <section class="sec" id="guide">
     <p class="sec-no">01 · HOW TO DINE</p>
     <h2 class="sec-title">이용 안내</h2>
@@ -96,7 +101,9 @@
     </div>
   </section>
 
+</div>
   <!-- 02 메뉴판 -->
+<div class="page" data-page="menu">
   <section class="sec" id="menu">
     <p class="sec-no">02 · MENU</p>
     <img class="sec-img" src="assets/titles/menu.png" alt="Yummy Eye Menu">
@@ -111,7 +118,9 @@
     <div class="board" id="board"></div>
   </section>
 
+</div>
   <!-- 03 셰프 -->
+<div class="page" data-page="chef">
   <section class="sec" id="chef">
     <p class="sec-no">03 · TODAY'S CHEF</p>
     <h2 class="sec-title">오늘의 셰프</h2>
@@ -145,7 +154,9 @@
     </div>
   </section>
 
+</div>
   <!-- 04 화보 -->
+<div class="page" data-page="gallery">
   <section class="sec" id="gallery">
     <p class="sec-no">04 · LOOKBOOK</p>
     <h2 class="sec-title">화보 갤러리</h2>
@@ -153,7 +164,9 @@
     <div class="slots slots-g" id="gallery-slots"></div>
   </section>
 
+</div>
   <!-- 계산대 -->
+<div class="page" data-page="counter">
   <section class="sec counter" id="counter">
     <p class="sec-no">COUNTER</p>
     <h2 class="sec-title">계산대</h2>
@@ -162,9 +175,14 @@
     </div>
     <div class="slots"><div class="slot"><b>Instagram</b><span>문의와 새 메뉴 소식을 받을 YUMMY EYE 인스타그램 링크가 들어갈 자리예요.</span></div></div>
   </section>
-</main>
-
 <footer>YUMMY EYE · ATC 2026<br>잘 드셨나요? 다음 메뉴도 이 주소에서 차려집니다.</footer>
+</div>
+</div>
+
+<!-- 장 넘기기 -->
+<button class="pg-arrow pg-prev" id="pg-prev" type="button" aria-label="이전 장">‹</button>
+<button class="pg-arrow pg-next" id="pg-next" type="button" aria-label="다음 장">›</button>
+<div class="pg-dots" id="pg-dots"></div>
 
 <!-- 모델 상세 (메뉴판 카드를 누르면 열림) -->
 <div class="sheet hidden" id="sheet" role="dialog" aria-modal="true">
