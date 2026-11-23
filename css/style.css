@@ -642,3 +642,28 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
   .blue-top .tabs a { -webkit-flex: 1; flex: 1; text-align: center; margin: 0 !important; }
   .blue-top .tabs a.on::after { left: 50%; right: auto; width: 34px; margin-left: -17px; }
 }
+.blue-top .tabs { border-radius: 999px; padding: 0 22px; }
+/* 간격 정리: 접시 테(안쪽 18.5px) 안으로 사방 같은 여백 */
+.page > .fit > .sec { padding: 52px 56px 48px !important; }
+.page > .fit > .sec:first-child { margin-top: 20px; }
+.sec-no { margin-bottom: 4px; }
+@media (max-width: 719px) {
+  .page > .fit > .sec { padding: 40px 28px 36px !important; }
+  .page > .fit > .sec:first-child { margin-top: 14px; }
+}
+/* 아래 장 넘김 바에 접시가 가리지 않게, 칸 사이 간격 통일(칸 32 · 카드 12) */
+.page > .fit { padding-bottom: 84px; }
+@media (min-width: 720px) {
+  #guide .cols, #chef .cols { margin: 0 -16px; }
+  #guide .col, #chef .col { padding: 0 16px; }
+  #guide .steps { margin: 4px -6px 0; }
+  #guide .steps li { margin: 12px 6px 0; }
+  .tastes { margin: 0 -6px; } .taste { padding: 6px; }
+  #faq .faq { margin: 8px -6px 0; } #faq .faq details { width: calc(50% - 12px); margin: 6px; }
+}
+@media (max-width: 719px) { .blue-top .tabs { width: calc(100% - 24px); padding: 0 16px; } }
+@media (min-width: 720px) { .blue-top .tabs { width: calc(100% - 48px); } }
+/* 같은 줄 카드는 높이 맞춤, 카드 사이 12px */
+.note, .slot { display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; padding: 6px; }
+.note p, .slot span { -webkit-flex: 1; flex: 1; }
+.notes, .slots { margin-left: -6px; margin-right: -6px; }
