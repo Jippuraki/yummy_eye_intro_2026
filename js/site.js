@@ -118,7 +118,7 @@
     b.className = "board theme-" + cat.toLowerCase();
     b.innerHTML = '<div class="board-in"><h3 class="board-name"><img src="assets/titles/' + cat.toLowerCase() + '.png" alt="' + esc(CATS[cat].board) + '"></h3>' + h + "</div>";
   }
-  function renderMenu() { renderCatTabs(); renderTasteFilter(); renderBoard(); }
+  function renderMenu() { renderCatTabs(); renderTasteFilter(); renderBoard(); if (typeof refit === "function" && pageEls) fit($("menu").parentNode.parentNode); }
 
   // ── 모델 상세 시트
   function row(k, v) { return v ? "<div><dt>" + k + "</dt><dd>" + esc(v) + "</dd></div>" : ""; }
@@ -170,14 +170,46 @@
   var pagesEl = $("pages"), pageEls = [], cur = 0;
   each(pagesEl.children, function (el) { if (el.className === "page") pageEls.push(el); });
   var PAGE_NAMES = { top: "표지", guide: "이용 안내", menu: "메뉴판", chef: "셰프", gallery: "화보", counter: "계산대" };
-  function pageOf(el) { while (el && el !== document) { if (el.className === "page") return pageEls.indexOf(el); el = el.parentNode; } return -1; }
+  function pageOf(el) { while (el && el !== document) { var k = pageEls.indexOf(el); if (k >= 0) return k; el = el.parentNode; } return -1; }
+  // 책장 넘기기: 앞으로 가면 지금 장이 왼쪽 모서리를 축으로 넘어가고, 뒤로 가면 앞 장이 다시 덮인다
+  var turning = false;
   function goTo(i, smooth) {
     i = Math.max(0, Math.min(pageEls.length - 1, i));
-    var x = i * pagesEl.clientWidth;
-    if (smooth !== false && pagesEl.scrollTo && "scrollBehavior" in document.documentElement.style) pagesEl.scrollTo({ left: x, behavior: "smooth" });
-    else pagesEl.scrollLeft = x;
+    if (i === cur || turning) return;
+    var from = pageEls[cur], to = pageEls[i], fwd = i > cur, anim = smooth !== false && !reduceMotion;
+    fit(to);
+    if (!anim) { from.className = "page"; to.className = "page cur" + (to.className.indexOf("fitted") >= 0 ? " fitted" : ""); refit(to); setCur(i); return; }
+    turning = true;
+    var keepFrom = from.className.indexOf("fitted") >= 0 ? " fitted" : "", keepTo = to.className.indexOf("fitted") >= 0 ? " fitted" : "";
+    if (fwd) { to.className = "page under" + keepTo; from.className = "page turn-out" + keepFrom; }
+    else { from.className = "page under" + keepFrom; to.className = "page turn-in" + keepTo; }
     setCur(i);
+    setTimeout(function () {
+      from.className = "page" + keepFrom; to.className = "page cur" + keepTo; turning = false;
+    }, 760);
   }
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // 한 화면 맞춤: 장 내용(.fit)이 장 높이보다 크면 줄인다. 데스크톱은 0.5배까지, 폰은 0.78배까지만(더 작아지면 세로 스크롤)
+  function fit(page) {
+    var f = page.firstElementChild; if (!f) return;
+    page.className = page.className.replace(/ ?fitted/g, "");
+    var h = f.offsetHeight, H = page.clientHeight, desk = window.innerWidth >= 720;
+    var sc = Math.min(1, H / h), min = desk ? 0.5 : 0.78;
+    if (sc < 1 && sc >= min) { f.style.setProperty("--s", sc.toFixed(3)); page.className += " fitted"; }
+    else f.style.removeProperty("--s");
+  }
+  function refit(page) { fit(page || pageEls[cur]); }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { refit(); }, 120); });
+  document.addEventListener("load", function (e) { if (e.target.tagName === "IMG") { clearTimeout(rt); rt = setTimeout(function () { refit(); }, 120); } }, true);
+  // 손가락으로 옆으로 밀기
+  var tx = null, ty = 0;
+  pagesEl.addEventListener("touchstart", function (e) { var t = e.touches[0]; tx = t.clientX; ty = t.clientY; }, { passive: true });
+  pagesEl.addEventListener("touchend", function (e) {
+    if (tx === null) return;
+    var t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty; tx = null;
+    if (closest(e.target, "data-noswipe")) return;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) goTo(cur + (dx < 0 ? 1 : -1));
+  }, { passive: true });
   function setCur(i) {
     cur = i;
     var key = pageEls[i].getAttribute("data-page");
@@ -190,19 +222,13 @@
     var on = $("tabs").getElementsByTagName("a")[i];
     if (on && on.scrollIntoView && $("tabs").scrollWidth > $("tabs").clientWidth) $("tabs").scrollLeft = on.offsetLeft - 40;
   }
-  var st;
-  pagesEl.addEventListener("scroll", function () {
-    clearTimeout(st);
-    st = setTimeout(function () { var i = Math.round(pagesEl.scrollLeft / pagesEl.clientWidth); if (i !== cur) setCur(i); }, 80);
-  });
-  window.addEventListener("resize", function () { pagesEl.scrollLeft = cur * pagesEl.clientWidth; });
   // #링크(탭·버튼·본문 링크): 그 섹션이 있는 장으로 넘기고 장 안에서 위치를 맞춘다
   function goToTarget(id, smooth) {
     var el = id === "top" ? pageEls[0] : $(id);
     var i = pageOf(el); if (i < 0) return false;
     goTo(i, smooth);
     var page = pageEls[i];
-    page.scrollTop = el === page || el.parentNode === page && el === page.firstElementChild ? 0 : Math.max(0, el.offsetTop - 10);
+    page.scrollTop = page.className.indexOf("fitted") >= 0 || el === page || el.tagName === "SECTION" ? 0 : Math.max(0, el.offsetTop - 10);
     return true;
   }
   document.addEventListener("click", function (e) {
@@ -241,7 +267,7 @@
   renderGallerySlots();
   renderTastes();
   renderMenu();
-  setCur(0);
+  pageEls[0].className = "page cur"; setCur(0); fit(pageEls[0]);
   var mh = /^#m=([\w-]+)/.exec(location.hash), hh = /^#([\w-]+)$/.exec(location.hash);
   if (mh && byId(mh[1])) {
     state.cat = catOf(byId(mh[1])); renderMenu();

@@ -24,7 +24,7 @@
 
 <!-- 메뉴판 넘기듯 좌우로 넘기는 장들 (한 장 = 한 섹션, 장 안에서는 세로 스크롤) -->
 <div class="pages" id="pages">
-<div class="page" data-page="top">
+<div class="page" data-page="top"><div class="fit">
 <!-- 히어로: 레드 깅엄 식탁 위 접시 -->
 <section class="hero" id="top">
   <div class="plate">
@@ -58,15 +58,16 @@
     </div>
   </section>
   <p class="swipe-hint">옆으로 넘겨 다음 장을 보세요 <b>→</b></p>
-</div>
+</div></div>
 
   <!-- 01 이용 안내 -->
-<div class="page" data-page="guide">
+<div class="page" data-page="guide"><div class="fit">
   <section class="sec" id="guide">
     <p class="sec-no">01 · HOW TO DINE</p>
     <h2 class="sec-title">이용 안내</h2>
     <p class="sec-lead">처음 오셨다면 여기부터. 한 바퀴 도는 데 10분이면 충분해요.</p>
 
+    <div class="cols"><div class="col">
     <div class="info">
       <dl>
         <div><dt>전시</dt><dd>ATC 2026 (Art&amp;Technology Conference)</dd></div>
@@ -86,10 +87,12 @@
       <li><b>영수증 QR로 다시 맛보기</b><span>영수증 아래 QR을 찍으면 결과를 휴대폰으로 다시 볼 수 있어요.</span></li>
     </ol>
 
+    </div><div class="col">
     <h3 class="h3">6가지 맛</h3>
     <p class="h3-lead">맛 테스트는 취향을 6가지 맛으로 나눠요. 가장 진한 맛이 '주맛', 한 꼬집 들어간 맛이 '부맛'이에요.</p>
     <div class="tastes" id="taste-list"></div>
 
+    </div><div class="col">
     <h3 class="h3">자주 묻는 질문</h3>
     <div class="faq">
       <details><summary>카메라가 제 얼굴을 저장하나요?</summary><p>아니요. 얼굴 사진은 저장하거나 전송하지 않아요. 화면 안에서 얼굴 길이, 가장 넓은 곳, 턱선만 재고 바로 버려요. 연락처는 받지 않고, 이름은 영수증에 넣고 싶을 때만 적어요(선택).</p></details>
@@ -99,11 +102,12 @@
       <details><summary>안경을 살 수 있나요?</summary><p>지금은 전시를 위해 차린 컨셉 컬렉션이라 판매하지 않아요. 궁금한 점은 전시장에서 셰프에게 직접 물어보세요. 인스타그램 문의 창구도 곧 <a href="#counter">계산대</a>에 열어둘게요.</p></details>
       <details><summary>결과를 나중에 다시 볼 수 있나요?</summary><p>영수증 아래 QR을 휴대폰으로 찍으면 같은 결과가 다시 열려요. 전시장 계산대의 '지난 영수증 찾기'에 영수증 번호 세 자리를 넣어도 다시 볼 수 있어요. 영수증을 잃어버렸다면 <a href="https://yummy-taste-test.vercel.app/">맛 테스트</a>를 휴대폰으로 다시 해봐도 돼요.</p></details>
     </div>
+    </div></div>
   </section>
 
-</div>
+</div></div>
   <!-- 02 메뉴판 -->
-<div class="page" data-page="menu">
+<div class="page" data-page="menu"><div class="fit">
   <section class="sec" id="menu">
     <p class="sec-no">02 · MENU</p>
     <img class="sec-img" src="assets/titles/menu.png" alt="Yummy Eye Menu">
@@ -111,19 +115,20 @@
     <p class="sec-lead">델리 키친, 프레시 픽스, 음료 냉장고. 46가지 맛 중 하나를 눌러 열어보세요.</p>
     <div class="cat-tabs" id="cat-tabs"></div>
     <div class="filters">
-      <div class="chips" id="taste-filter"></div>
+      <div class="chips" id="taste-filter" data-noswipe="1"></div>
       <button class="chip chip-atc hidden" id="atc-filter" type="button">실물 시식만</button>
     </div>
     <p class="board-sub">포장을 눌러 열어보세요. 내 맛은 잘 봐야 알 수 있어요!</p>
     <div class="board" id="board"></div>
   </section>
 
-</div>
+</div></div>
   <!-- 03 셰프 -->
-<div class="page" data-page="chef">
+<div class="page" data-page="chef"><div class="fit">
   <section class="sec" id="chef">
     <p class="sec-no">03 · TODAY'S CHEF</p>
     <h2 class="sec-title">오늘의 셰프</h2>
+    <div class="cols"><div class="col">
     <div class="chef">
       <div class="chef-photo"><img src="assets/jippy-chef.png" alt="지푸라기 셰프 캐릭터 지피"></div>
       <div class="chef-txt">
@@ -137,6 +142,14 @@
       <div class="slot"><b>Portfolio</b><span>짚후라기의 포트폴리오 링크가 들어갈 자리예요.</span></div>
     </div>
 
+    <h3 class="h3">주방에서 있었던 일</h3>
+    <div class="slots slots-4">
+      <div class="slot"><b>스케치</b><span>모델 아이디어 스케치 사진이 들어갈 자리예요.</span></div>
+      <div class="slot"><b>3D 모델링</b><span>안경·케이스 3D 모델링 화면이 들어갈 자리예요.</span></div>
+      <div class="slot"><b>출력과 도장</b><span>3D 프린트 출력물과 도장 과정 사진이 들어갈 자리예요.</span></div>
+      <div class="slot"><b>포장</b><span>도시락·신선 트레이·우유팩 패키지 사진이 들어갈 자리예요.</span></div>
+    </div>
+      </div><div class="col">
     <h3 class="h3">레시피 노트</h3>
     <div class="notes">
       <article class="note"><b>왜 음식 포장이었냐면</b><p>안경을 고를 때 우리는 '어울리는지'만 따져요. 음식을 고를 때처럼 '오늘 뭐가 당기는지'로 고르면 어떨까 싶었어요.</p></article>
@@ -145,18 +158,12 @@
       <article class="note"><b>취향은 눈치 보지 않고</b><p>남과 다른 맛을 좋아해도 괜찮아요. 오늘 끌리는 맛을 눈치 보지 말고 골라보세요.</p></article>
     </div>
 
-    <h3 class="h3">주방에서 있었던 일</h3>
-    <div class="slots slots-4">
-      <div class="slot"><b>스케치</b><span>모델 아이디어 스케치 사진이 들어갈 자리예요.</span></div>
-      <div class="slot"><b>3D 모델링</b><span>안경·케이스 3D 모델링 화면이 들어갈 자리예요.</span></div>
-      <div class="slot"><b>출력과 도장</b><span>3D 프린트 출력물과 도장 과정 사진이 들어갈 자리예요.</span></div>
-      <div class="slot"><b>포장</b><span>도시락·신선 트레이·우유팩 패키지 사진이 들어갈 자리예요.</span></div>
-    </div>
+    </div></div>
   </section>
 
-</div>
+</div></div>
   <!-- 04 화보 -->
-<div class="page" data-page="gallery">
+<div class="page" data-page="gallery"><div class="fit">
   <section class="sec" id="gallery">
     <p class="sec-no">04 · LOOKBOOK</p>
     <h2 class="sec-title">화보 갤러리</h2>
@@ -164,9 +171,9 @@
     <div class="slots slots-g" id="gallery-slots"></div>
   </section>
 
-</div>
+</div></div>
   <!-- 계산대 -->
-<div class="page" data-page="counter">
+<div class="page" data-page="counter"><div class="fit">
   <section class="sec counter" id="counter">
     <p class="sec-no">COUNTER</p>
     <h2 class="sec-title">계산대</h2>
@@ -176,7 +183,7 @@
     <div class="slots"><div class="slot"><b>Instagram</b><span>문의와 새 메뉴 소식을 받을 YUMMY EYE 인스타그램 링크가 들어갈 자리예요.</span></div></div>
   </section>
 <footer>YUMMY EYE · ATC 2026<br>잘 드셨나요? 다음 메뉴도 이 주소에서 차려집니다.</footer>
-</div>
+</div></div>
 </div>
 
 <!-- 장 넘기기 -->
