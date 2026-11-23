@@ -1,6 +1,6 @@
 // YUMMY EYE 모델 마스터 데이터 — 이름·설명·맛·키워드·순서는 팜플렛(피그마 '팜플렛 시안')·스프레드시트 기준 (2026-11-20)
 // ko: 팜플렛 한글 이름 / desc: 맛 설명 / level: 맛 강도 1~3(팜플렛 ●●○) / tastes: [주맛, 부맛]
-// atc(실물 시착 표시)는 실물 모델 확정 전까지 빼둠
+// atc(실물 시착 표시)는 아래 ATC_IDS(진서 시트 노란 칸 19종)로 붙인다
 // 맛 6종: sweet 단맛 / bitter 쓴맛 / salty 짠맛 / sour 신맛 / spicy 매운맛 / umami 감칠맛
 
 var TASTES = {
@@ -91,8 +91,14 @@ var MODELS = [
   { id: "coffee-latte",      line: "Coffee", name: "Latte",         ko: "라테", desc: "부드러운 밀크티 빛. 반투명으로 포근하게.", level: 1, frame: "반투명 밀크티 브라운", lens: "브라운", tastes: ["sweet", "bitter"], keywords: ["부드러운", "밀크티", "반투명"], faces: ["heart"] }
 ];
 
-// 실물 시착 표시(atc) — 실물 모델 확정 후 true로
-var SHOW_ATC = false;
+// 실물 시착 표시(atc) — 진서 모델 시트 노란 칸 기준(2026-11-23) 19종. 부스 테이블에 실물이 있는 모델
+var ATC_IDS = [
+  "dango-chewing", "dango-buldak", "dango-mintchoco", "cutlet-burnt", "cutlet-bumuk", "sushi-egg", "tteok-jjajang",
+  "vegie-tomato", "vegie-pumpkin", "fruit-apple", "meat-mediumrare", "sashimi-mackerel", "sashimi-salmon",
+  "juice-ice", "milk-cereals", "wine-white", "wine-red", "coffee-espresso", "coffee-latte"
+];
+(function () { for (var i = 0; i < MODELS.length; i++) MODELS[i].atc = ATC_IDS.indexOf(MODELS[i].id) >= 0; })();
+var SHOW_ATC = true;
 
 // 카테고리 순서 (주문 번호용): Deli 01 · Fresh 02 · Beverage 03
 var CATEGORY_ORDER = ["Deli", "Fresh", "Beverage"];
@@ -108,6 +114,9 @@ function modelCode(m) {
   var catCode = cat === "Beverage" ? "BEV" : cat.toUpperCase(), lineCode = m.line === "Vegie" ? "VEGI" : m.line.toUpperCase();
   return { no: p(ci) + "-" + p(li) + "-" + p(mi), code: catCode + "-" + lineCode + "-" + p(mi) };
 }
+
+// 모델 전체 이름: 시트 표기 그대로 "Buldak · 핫뜨핫뜨 불닭"
+function fullName(m) { return m.ko ? m.name + " · " + m.ko : m.name; }
 
 // 모델 사진: assets/models/<모델 id>.png (배경 투명 권장). 파일이 없으면 자리만 비워둔다.
 function modelPhoto(m) { return "assets/models/" + m.id + ".png"; }

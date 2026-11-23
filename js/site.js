@@ -70,7 +70,7 @@
   }
   var FOLD = { Sushi: 1 };
   function front(m) { return '<img class="itm-img" loading="lazy" src="assets/models/front/' + m.id + '.png" alt="">'; }
-  function atcBadge(m) { return isAtc(m) ? '<span class="badge">실물</span>' : ""; }
+  function atcBadge(m) { return isAtc(m) ? '<span class="badge">실물<br>시식</span>' : ""; }
   // 테스트 웹 메뉴판과 같은 진열: Deli = 델리 키친 메뉴판 / Fresh = 투명 트레이 / Beverage = 음료 냉장고
   function itemHTML(m, cat) {
     var d = ' type="button" data-id="' + m.id + '"', code = esc(modelCode(m).code);
@@ -84,7 +84,7 @@
         '<span class="b-label"><b>' + esc(m.ko) + "</b><small>" + esc(m.name) + "</small><i>" + tasteDots(m) + "</i><em>" + code + "</em></span>" + atcBadge(m) + "</button>";
     }
     var fold = FOLD[m.line] ? '<img class="itm-fold" loading="lazy" src="assets/models/fold/' + m.id + '.png" alt=""><span class="itm-fold-t">접이식</span>' : "";
-    return '<button class="itm itm-deli"' + d + ">" + front(m) + fold +
+    return '<button class="itm itm-deli' + (fold ? " has-fold" : "") + '"' + d + ">" + front(m) + fold +
       '<span class="d-label"><b>' + esc(m.ko) + "</b><small>" + esc(m.name) + "</small><i>" + tasteDots(m) + "</i></span>" + atcBadge(m) + "</button>";
   }
   function lineTitle(cat, key) {
@@ -116,7 +116,7 @@
     if (!shown) h += '<p class="empty">이 코너에는 해당 메뉴가 없어요. 다른 코너도 둘러보세요.</p>';
     var b = $("board");
     b.className = "board theme-" + cat.toLowerCase();
-    b.innerHTML = '<div class="board-in"><h3 class="board-name">' + esc(CATS[cat].board) + "</h3>" + h + "</div>";
+    b.innerHTML = '<div class="board-in"><h3 class="board-name"><img src="assets/titles/' + cat.toLowerCase() + '.png" alt="' + esc(CATS[cat].board) + '"></h3>' + h + "</div>";
   }
   function renderMenu() { renderCatTabs(); renderTasteFilter(); renderBoard(); }
 

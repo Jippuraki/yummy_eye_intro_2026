@@ -14,7 +14,7 @@
 
 <header class="top">
   <div class="top-hang">
-  <a class="sign" href="#top"><img src="assets/logo-oval.png" alt="yummy eye"><small>Grocerant</small></a>
+  <a class="sign" href="#top"><img src="assets/titles/grocerant.png" alt="Yummy Eye Grocerant"></a>
   <div class="awning" aria-hidden="true"><i class="aw-cap"></i><i class="aw-stripes"></i><i class="aw-scallop"></i></div>
   </div>
   <nav class="tabs" id="tabs">
@@ -76,7 +76,7 @@
     <ol class="steps">
       <li><b>계산대에서 맛 테스트</b><span>iMac 앞에서 취향 질문 12개와 얼굴 스캔. 3분이면 나만의 맛이 나와요. 급하면 얼굴만 보는 '간편 식품' 코스도 있어요.</span></li>
       <li><b>영수증 받기</b><span>오늘의 맛, 어울리는 안경 레시피, 추천 모델이 영수증으로 나와요. 들고 다니면서 보세요.</span></li>
-      <li><b>실물 시착</b><span>테이블 위 실물 안경은 직접 써볼 수 있어요. 거울 앞에서 편하게 맛보세요.</span></li>
+      <li><b>실물 시착</b><span>테이블 위 실물 안경 19가지는 직접 써볼 수 있어요. 거울 앞에서 편하게 맛보세요.</span></li>
       <li><b>메뉴판과 포장 구경</b><span>도시락, 신선 트레이, 우유팩. 포장을 열면 안경이 나와요. 이 페이지의 메뉴판에서도 46가지를 다 볼 수 있어요.</span></li>
       <li><b>영수증 QR로 다시 맛보기</b><span>영수증 아래 QR을 찍으면 결과를 휴대폰으로 다시 볼 수 있어요.</span></li>
     </ol>
@@ -90,7 +90,7 @@
       <details><summary>카메라가 제 얼굴을 저장하나요?</summary><p>아니요. 얼굴 사진은 저장하거나 전송하지 않아요. 화면 안에서 얼굴 길이, 가장 넓은 곳, 턱선만 재고 바로 버려요. 연락처는 받지 않고, 이름은 영수증에 넣고 싶을 때만 적어요(선택).</p></details>
       <details><summary>AI가 본 얼굴형이 틀린 것 같아요.</summary><p>확인 화면에서 '다른 얼굴형이에요'를 누르고 세 가지(길이 · 넓은 곳 · 턱선)를 직접 고르면 돼요. 카메라는 참고용 조리 도구일 뿐, 간은 내가 맞춥니다.</p></details>
       <details><summary>영수증에 있는 말이 무슨 뜻이에요?</summary><p><b>셰잎</b>은 안경테 모양, <b>다리(템플)</b>는 귀에 거는 부분, <b>브릿지</b>는 두 렌즈를 잇는 코 위 부분이에요. <b>아세테이트</b>는 두께감 있는 뿔테 소재, <b>틴트</b>는 옅은 색이 들어간 렌즈예요.</p></details>
-      <details><summary>어떤 안경을 직접 써볼 수 있나요?</summary><p>전시장 테이블에 놓인 실물 안경은 누구나 써볼 수 있어요. 어떤 모델이 나와 있는지는 현장 테이블에서 확인해 주세요.</p></details>
+      <details><summary>어떤 안경을 직접 써볼 수 있나요?</summary><p>46가지 중 19가지가 실물로 테이블에 차려져 있어요. 메뉴판에서 '실물 시식' 스티커가 붙은 모델이에요. <a href="#menu" data-atc="1">실물만 모아 보기</a></p></details>
       <details><summary>안경을 살 수 있나요?</summary><p>지금은 전시를 위해 차린 컨셉 컬렉션이라 판매하지 않아요. 궁금한 점은 전시장에서 셰프에게 직접 물어보세요. 인스타그램 문의 창구도 곧 <a href="#counter">계산대</a>에 열어둘게요.</p></details>
       <details><summary>결과를 나중에 다시 볼 수 있나요?</summary><p>영수증 아래 QR을 휴대폰으로 찍으면 같은 결과가 다시 열려요. 전시장 계산대의 '지난 영수증 찾기'에 영수증 번호 세 자리를 넣어도 다시 볼 수 있어요. 영수증을 잃어버렸다면 <a href="https://yummy-taste-test.vercel.app/">맛 테스트</a>를 휴대폰으로 다시 해봐도 돼요.</p></details>
     </div>
@@ -99,12 +99,13 @@
   <!-- 02 메뉴판 -->
   <section class="sec" id="menu">
     <p class="sec-no">02 · MENU</p>
+    <img class="sec-img" src="assets/titles/menu.png" alt="Yummy Eye Menu">
     <h2 class="sec-title">오늘의 메뉴판</h2>
     <p class="sec-lead">델리 키친, 프레시 픽스, 음료 냉장고. 46가지 맛 중 하나를 눌러 열어보세요.</p>
     <div class="cat-tabs" id="cat-tabs"></div>
     <div class="filters">
       <div class="chips" id="taste-filter"></div>
-      <button class="chip chip-atc hidden" id="atc-filter" type="button">실물만</button>
+      <button class="chip chip-atc hidden" id="atc-filter" type="button">실물 시식만</button>
     </div>
     <p class="board-sub">포장을 눌러 열어보세요. 내 맛은 잘 봐야 알 수 있어요!</p>
     <div class="board" id="board"></div>
