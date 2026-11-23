@@ -470,3 +470,91 @@ body { display: -webkit-flex; display: flex; -webkit-flex-direction: column; fle
 @media (min-width: 1240px) {
   .page > .fit > #guide.sec { margin-left: auto; margin-right: auto; }
 }
+
+/* ===== 11/23 블루 리디자인: Taste Test 시작 화면 톤(파란 깅엄 식탁 · 파란 테 접시 · 파란 알약 버튼) ===== */
+:root { --blue: #0B50EE; --blue-soft: #C8E6FF; --ketchup: #0B50EE; --red: #0B50EE; --pink: #C8E6FF; --ink: #14204A; }
+/* 메뉴판 보드·모델 상세·실물 배지는 카테고리 색(델리 빨강) 그대로 */
+.board, .cat-tabs, .sheet, .badge, .filters { --ketchup: #C3302A; --red: #C23228; --pink: #FFD3D0; --ink: #2B140F; }
+body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; }
+/* 머리: 차양 대신 깅엄 위에 떠 있는 흰 알약 바 */
+.top.blue-top { background: transparent; padding: 12px 12px 6px; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; max-width: 1240px; width: 100%; margin: 0 auto; }
+.blue-top .brand { -webkit-flex: none; flex: none; display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; -webkit-align-items: center; align-items: center; padding: 8px 22px 7px; margin-right: 10px; background: #FFFDF8; border: 3px solid #fff; border-radius: 60px; box-shadow: 0 0 0 2px var(--blue), 4px 6px 6px rgba(10,40,120,.25); text-decoration: none; }
+.blue-top .brand img { width: 120px; height: auto; display: block; }
+.blue-top .brand span { margin-top: 2px; font: 700 8.5px/1 Arial, sans-serif; letter-spacing: .12em; color: var(--blue); white-space: nowrap; }
+.blue-top .tabs { -webkit-flex: 1; flex: 1; min-width: 0; margin: 0; padding: 7px; background: #FFFDF8; border: 0; border-radius: 60px; box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--blue), 4px 6px 8px rgba(10,40,120,.25); }
+.blue-top .tabs a { color: var(--blue); font-family: var(--f-display); }
+.blue-top .tabs a.on { background: var(--blue); color: #fff; box-shadow: 2px 3px 0 rgba(10,40,120,.2); }
+.pages { background: transparent; }
+.page { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; }
+/* 장 종이 = 파란 테 두른 흰 접시 */
+.page > .fit > .sec { background: #FFFEFA; border-radius: 38px; box-shadow: inset 0 0 0 9px #FFFEFA, inset 0 0 0 13px var(--blue), inset 0 0 0 17px #FFFEFA, inset 0 0 0 18.5px var(--blue), 0 0 0 5px rgba(255,255,255,.75), 0 16px 30px rgba(10,40,120,.3); padding: 34px 30px 34px; }
+.page > .fit > .sec::before { display: none; }
+.sec-no { background: var(--blue); }
+.sec-title, .h3, .taste b, .info dt, .faq summary, .chef-name { color: var(--blue); }
+.faq summary { color: var(--ink); }
+.faq details, .taste > div { border-color: rgba(11,80,238,.35); }
+.steps li { border-color: var(--blue); }
+/* 표지: 실제 시작 화면처럼 */
+.page[data-page="top"] .fit, .hero { background: none !important; }
+.tagline { color: var(--blue); }
+.title { color: var(--blue); text-shadow: 3px 4px 0 rgba(11,80,238,.12); }
+.sub { color: var(--blue); }
+.when { background: #FFFDF8; border-color: var(--blue); color: var(--blue); box-shadow: 3px 4px 0 rgba(10,40,120,.2); }
+.pill { border-color: #fff; box-shadow: 0 0 0 2px var(--blue), 4px 7px 5px rgba(10,40,120,.28); }
+.pill-red { background: var(--blue); color: #fff; }
+.pill-pink { background: var(--blue-soft); color: var(--ink); }
+.card { border-radius: 30px; border: 0; background: #FFFEFA; box-shadow: inset 0 0 0 8px #FFFEFA, inset 0 0 0 11px var(--blue), inset 0 0 0 14px #FFFEFA, inset 0 0 0 15.5px var(--blue), 0 14px 26px rgba(10,40,120,.3); padding: 34px 32px; }
+.card h2 { color: var(--blue); }
+.swipe-hint { color: #fff; text-shadow: 0 1px 3px rgba(10,40,120,.7); }
+/* 장 넘기기 버튼 */
+.pg-arrow { border-color: #fff; box-shadow: 0 0 0 2px var(--blue), 3px 5px 5px rgba(10,40,120,.28); }
+.pg-dots { box-shadow: 0 0 0 2px var(--blue), 3px 5px 6px rgba(10,40,120,.25); }
+/* 부스 그림 */
+.booth { background: #EEF6FF; border-color: var(--blue); }
+.page > .fit > footer { text-shadow: 0 1px 3px rgba(10,40,120,.8); }
+@media (max-width: 719px) {
+  .top.blue-top { -webkit-flex-direction: column; flex-direction: column; padding: 8px 8px 4px; }
+  .blue-top .brand { margin: 0 0 8px; padding: 6px 18px 5px; }
+  .blue-top .brand img { width: 96px; }
+  .blue-top .tabs { width: 100%; padding: 5px; }
+  .page > .fit > .sec { border-radius: 28px; padding: 28px 20px 28px; box-shadow: inset 0 0 0 7px #FFFEFA, inset 0 0 0 10px var(--blue), inset 0 0 0 13px #FFFEFA, inset 0 0 0 14px var(--blue), 0 12px 22px rgba(10,40,120,.3); }
+}
+@media (min-width: 720px) and (max-height: 820px) {
+  .top.blue-top { padding-top: 8px; padding-bottom: 4px; }
+  .blue-top .brand { padding: 6px 18px 5px; } .blue-top .brand img { width: 104px; }
+}
+@media (min-width: 720px) { .page > .fit > .sec { padding: 34px 48px 34px; } .page > .fit > #guide.sec { padding-left: 40px; padding-right: 40px; } }
+/* 표지: 시작 화면처럼 가운데 큰 접시 + 아래 알약 버튼 + 바구니·수저 */
+.plate-body { display: none; }
+.pg-dots button { background: rgba(11,80,238,.25); }
+@media (min-width: 720px) {
+  .page[data-page="top"] .fit { display: block; min-height: 100%; }
+  .page[data-page="top"] .intro, .page[data-page="top"] .swipe-hint { display: none; }
+  .page[data-page="top"] .hero { --pw: calc((100vh - 250px) * 1.39); padding: 18px 16px 40px; min-height: 100%; }
+  .page[data-page="top"] .plate { width: var(--pw); max-width: 940px; min-width: 620px; }
+  .page[data-page="top"] .plate-in { left: 15%; right: 15%; top: 15%; bottom: 17%; }
+  .page[data-page="top"] .plate-in .logo { width: 30%; max-width: 240px; }
+  .page[data-page="top"] .tagline { font-size: 13px; letter-spacing: .14em; margin-top: 10px; }
+  .page[data-page="top"] .title { font-size: 96px; margin-top: 14px; line-height: .9; white-space: nowrap; }
+  .page[data-page="top"] .sub { font-family: var(--f-display); font-weight: 900; font-size: 30px; margin-top: 6px; }
+  .page[data-page="top"] .plate-body { display: block; margin-top: 16px; font-size: 17px; line-height: 1.6; color: var(--demi); }
+  .page[data-page="top"] .btns { margin-top: -46px; }
+  .page[data-page="top"] .btns .pill { margin: 0 22px; font-size: 22px; padding: 20px 34px; }
+  .page[data-page="top"] .when { position: absolute; left: 24px; top: 14px; margin: 0; }
+  .page[data-page="top"] .basket { width: 230px; left: 50%; right: auto; bottom: 40px; margin-left: calc(var(--pw) * -0.58); -webkit-transform: rotate(-16deg); transform: rotate(-16deg); z-index: 1; }
+  .page[data-page="top"] .cutlery { width: 300px; right: auto; left: 50%; bottom: 10px; margin-left: calc(var(--pw) * 0.30); z-index: 1; }
+}
+@media (min-width: 720px) and (max-height: 760px) {
+  .page[data-page="top"] .title { font-size: 76px; } .page[data-page="top"] .sub { font-size: 24px; } .page[data-page="top"] .plate-body { font-size: 14px; margin-top: 10px; }
+  .page[data-page="top"] .basket { width: 180px; } .page[data-page="top"] .cutlery { width: 230px; }
+}
+/* 머리 바를 장 위에 띄워서 깅엄이 끊기지 않게 */
+.top.blue-top { position: absolute; left: 0; right: 0; top: 0; z-index: 25; }
+.page { -webkit-box-sizing: border-box; box-sizing: border-box; padding-top: var(--hh, 80px); }
+.page[data-page="top"] .fit { min-height: 0; }
+@media (min-width: 720px) { .page[data-page="top"] .title { font-size: 84px; } }
+@media (min-width: 720px) and (max-height: 760px) { .page[data-page="top"] .title { font-size: 70px; } }
+.info dl > div { border-bottom-color: rgba(11,80,238,.3); }
+.note b, .note p { border-color: rgba(11,80,238,.35); }
+.slot b, .slot span { border-color: rgba(11,80,238,.45); }
+.chef-photo { background: var(--blue-soft); }

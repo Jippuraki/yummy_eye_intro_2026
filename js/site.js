@@ -193,12 +193,14 @@
   function fit(page) {
     var f = page.firstElementChild; if (!f) return;
     page.className = page.className.replace(/ ?fitted/g, "");
-    var h = f.offsetHeight, H = page.clientHeight, desk = window.innerWidth >= 720;
+    var h = f.offsetHeight, H = page.clientHeight - (parseFloat(window.getComputedStyle(page).paddingTop) || 0), desk = window.innerWidth >= 720;
     var sc = Math.min(1, H / h), min = desk ? 0.5 : 0.78;
     if (sc < 1 && sc >= min) { f.style.setProperty("--s", sc.toFixed(3)); page.className += " fitted"; }
     else f.style.removeProperty("--s");
   }
-  function refit(page) { fit(page || pageEls[cur]); }
+  function setHH() { var t = document.querySelector(".top"); if (t) document.documentElement.style.setProperty("--hh", t.offsetHeight + "px"); }
+  setHH();
+  function refit(page) { setHH(); fit(page || pageEls[cur]); }
   var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { refit(); }, 120); });
   document.addEventListener("load", function (e) { if (e.target.tagName === "IMG") { clearTimeout(rt); rt = setTimeout(function () { refit(); }, 120); } }, true);
   // 손가락으로 옆으로 밀기
