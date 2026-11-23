@@ -731,3 +731,32 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 .page > .fit { padding-bottom: 16px; }
 .page[data-page="top"] { padding-bottom: 0; }
 @media (max-width: 719px) { .page { padding-bottom: 76px; } }
+/* 가운데 정렬: 로고 똑바로, 자간 뒤꼬리 보정, 두 버튼 같은 폭, 표지 덩어리를 탭과 넘김 점 사이 세로 가운데로 */
+.blue-top .oval-sign img { -webkit-transform: none; transform: none; }
+.tagline { text-indent: .3em; }
+.page[data-page="top"] .btns { display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; }
+.page[data-page="top"] .btns .pill { width: 260px; text-align: center; -webkit-box-sizing: border-box; box-sizing: border-box; padding-left: 0; padding-right: 0; }
+@media (min-width: 720px) {
+  .page[data-page="top"] .hero { --pt: max(20px, calc((var(--H) - var(--pw) / 1.39 - 88px) / 2)); padding-top: var(--pt); }
+  .page[data-page="top"] .basket { top: calc(var(--pt) + var(--pw) / 1.39 - var(--side) * 1.05); }
+  .page[data-page="top"] .cutlery { top: calc(var(--pt) + var(--pw) / 1.39 - var(--side) * 1.25); }
+}
+@media (max-width: 719px) { .page[data-page="top"] .btns .pill { width: 46%; max-width: 180px; padding-left: 0; padding-right: 0; } }
+@media (min-width: 720px) {
+  .page[data-page="top"] .hero { --Hr: calc(100vh - var(--hh, 150px) - 53px); --pt: max(20px, calc((var(--Hr) - var(--pw) / 1.39 - 88px) / 2)); }
+}
+/* 장 접시도 탭과 넘김 점 사이 세로 가운데 */
+.page:not([data-page="top"]) > .fit { -webkit-box-sizing: border-box; box-sizing: border-box; min-height: 100%; display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; -webkit-justify-content: center; justify-content: center; padding-top: 16px; padding-bottom: 16px; }
+.page:not([data-page="top"]) > .fit > .sec:first-child { margin-top: 0; }
+.page:not([data-page="top"]) > .fit > .sec { -webkit-flex: none; flex: none; width: calc(100% - 24px); }
+@media (min-width: 720px) { .page:not([data-page="top"]) > .fit > .sec { width: calc(100% - 48px); } }
+.page:not([data-page="top"]) { padding-bottom: 53px; }
+.page:not([data-page="top"]) > .fit { padding-top: 20px; padding-bottom: 20px; }
+@media (min-width: 720px) {
+  .page[data-page="top"] .basket { top: calc(var(--pt) + var(--pw) / 2.78 - var(--side) * .5); }
+  .page[data-page="top"] .cutlery { top: calc(var(--pt) + var(--pw) / 2.78 - var(--side) * .595); }
+}
+@media (min-width: 720px) { .page[data-page="top"] .basket { margin-left: calc(var(--pw) / -2 - var(--side) - 54px); } }
+@media (min-width: 720px) {
+  .page[data-page="top"] .hero { --pw: min(calc((var(--H) - 128px) * 1.39), calc(100vw - 520px), 900px); --side: min(200px, calc((100vw - var(--pw)) / 2 - 116px)); }
+}
