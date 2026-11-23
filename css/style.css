@@ -667,3 +667,62 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 .note, .slot { display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; padding: 6px; }
 .note p, .slot span { -webkit-flex: 1; flex: 1; }
 .notes, .slots { margin-left: -6px; margin-right: -6px; }
+
+/* ===== 11/23 밤 2: 겹침 없는 표지·머리 (화면 높이에 맞춰 비율 계산) ===== */
+/* 머리: 로고는 차양에만 걸리고 탭 리본과 겹치지 않게, 탭은 고르게 */
+.tab-gap { display: none !important; }
+.blue-top .tabs { margin-top: 33px; max-width: 760px; }
+@media (min-width: 720px) and (max-height: 820px) { .blue-top .tabs { margin-top: 25px; } }
+@media (max-width: 719px) { .blue-top .tabs { margin-top: 0; } }
+/* 표지: 접시 높이 = 남는 높이 − 버튼 줄, 바구니·수저는 접시 옆 빈자리에만 */
+@media (min-width: 720px) {
+  .page[data-page="top"] .hero {
+    --H: calc(100vh - var(--hh, 150px) - 76px);
+    --pw: min(calc((var(--H) - 128px) * 1.39), calc(100vw - 440px), 900px);
+    --side: min(210px, calc((100vw - var(--pw)) / 2 - 56px));
+    padding: 28px 16px 0; min-height: 0;
+  }
+  .page[data-page="top"] .plate { width: var(--pw); min-width: 0; max-width: none; }
+  .page[data-page="top"] .plate-in { left: 20%; right: 20%; top: 21%; bottom: 23%; }
+  .page[data-page="top"] .tagline { font-size: calc(var(--pw) * .0145); letter-spacing: .3em; }
+  .page[data-page="top"] .title { font-size: calc(var(--pw) * .082); margin-top: calc(var(--pw) * .012); }
+  .page[data-page="top"] .sub { font-size: calc(var(--pw) * .028); margin-top: calc(var(--pw) * .008); }
+  .page[data-page="top"] .plate-body { font-size: calc(var(--pw) * .0175); margin-top: calc(var(--pw) * .016); line-height: 1.6; }
+  .plate-when { font-size: calc(var(--pw) * .0155); margin-top: calc(var(--pw) * .016); }
+  .plate-when b { font-size: inherit; }
+  .page[data-page="top"] .btns { margin-top: 32px; }
+  .page[data-page="top"] .btns .pill { margin: 0 9px; font-size: 18px; padding: 16px 28px; }
+  .page[data-page="top"] .basket { width: var(--side); left: 50%; bottom: auto; top: calc(28px + var(--pw) / 1.39 - var(--side) * 1.05); margin-left: calc(var(--pw) / -2 - var(--side) - 28px); -webkit-transform: rotate(-12deg); transform: rotate(-12deg); }
+  .page[data-page="top"] .cutlery { width: var(--side); left: 50%; bottom: auto; top: calc(28px + var(--pw) / 1.39 - var(--side) * 1.25); margin-left: calc(var(--pw) / 2 + 28px); -webkit-transform: none; transform: none; }
+}
+.blue-top .tabs { margin-top: 40px; }
+@media (min-width: 720px) and (max-height: 820px) { .blue-top .tabs { margin-top: 32px; } }
+@media (max-width: 719px) { .blue-top .tabs { margin-top: 0; } }
+@media (min-width: 720px) {
+  .page[data-page="top"] .hero { --side: min(200px, calc((100vw - var(--pw)) / 2 - 80px)); }
+  .page[data-page="top"] .basket { margin-left: calc(var(--pw) / -2 - var(--side) - 40px); }
+  .page[data-page="top"] .cutlery { margin-left: calc(var(--pw) / 2 + 36px); }
+}
+/* 낮은 화면: 접시 안 글은 제목·한 줄·날짜만, 글씨는 키움 */
+@media (min-width: 720px) and (max-height: 780px) {
+  .page[data-page="top"] .plate-body { display: none; }
+  .page[data-page="top"] .tagline { font-size: max(10px, calc(var(--pw) * .017)); }
+  .page[data-page="top"] .title { font-size: calc(var(--pw) * .095); }
+  .page[data-page="top"] .sub { font-size: calc(var(--pw) * .034); margin-top: calc(var(--pw) * .012); }
+  .plate-when { font-size: max(11px, calc(var(--pw) * .02)); margin-top: calc(var(--pw) * .03); }
+}
+/* 폰: 제목 한 줄, 버튼 나란히, 바구니·수저는 겹치지 않게 뺌 */
+@media (max-width: 719px) {
+  .page[data-page="top"] .hero { padding: 20px 16px 28px; }
+  .page[data-page="top"] .plate { max-width: 358px; }
+  .page[data-page="top"] .plate-in { left: 18%; right: 18%; top: 20%; bottom: 22%; }
+  .page[data-page="top"] .title { font-size: 9.4vw; white-space: nowrap; margin-top: 6px; }
+  .page[data-page="top"] .sub { font-size: 3.8vw; margin-top: 4px; }
+  .page[data-page="top"] .tagline { font-size: 2.3vw; letter-spacing: .14em; }
+  .page[data-page="top"] .basket, .page[data-page="top"] .cutlery { display: none; }
+  .page[data-page="top"] .when { margin-top: 22px; }
+  .page[data-page="top"] .btns { margin-top: 16px; white-space: nowrap; }
+  .page[data-page="top"] .btns .pill { margin: 0 4px; font-size: 14px; padding: 13px 17px; }
+  .page[data-page="top"] .intro { margin-top: 8px; }
+}
+@media (min-width: 720px) { .page[data-page="top"] .hero { padding-bottom: 28px; } }
