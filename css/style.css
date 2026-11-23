@@ -577,3 +577,68 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
   .blue-top .oval-sign { width: 136px; margin-left: -68px; top: 2px; } .blue-top .oval-sign img { width: 136px; }
   .blue-top .tabs { margin-top: -4px; }
 }
+
+/* ===== 11/23 밤: 예쁘게 다듬기 — 넓은 차양, 리본 탭(가운데 타원 로고), 표지 정리 ===== */
+:root { --cream2: #FFF9EE; --navy: #1D3B8B; }
+/* 넓은 차양: 줄 하나 64px, 끝은 같은 색 반원 */
+.blue-top .top-hang { height: 92px; }
+.blue-top .awning { height: 92px; -webkit-filter: drop-shadow(0 6px 6px rgba(10,40,120,.22)); filter: drop-shadow(0 6px 6px rgba(10,40,120,.22)); }
+.blue-top .aw-stripes { height: 60px; background: repeating-linear-gradient(90deg, var(--blue) 0 64px, var(--cream2) 64px 128px); }
+.blue-top .aw-stripes::after { background: linear-gradient(180deg, rgba(255,255,255,.18) 0, rgba(255,255,255,0) 35%, rgba(10,30,90,.12) 100%); }
+.blue-top .aw-scallop { top: 59px; height: 32px; background: radial-gradient(circle at 32px 0, var(--blue) 31px, transparent 32px) 0 0 / 128px 32px repeat-x, radial-gradient(circle at 32px 0, var(--cream2) 31px, transparent 32px) 64px 0 / 128px 32px repeat-x; }
+/* 타원 로고: 차양에 걸린 간판 */
+.blue-top .oval-sign { top: 10px; width: 200px; margin-left: -100px; }
+.blue-top .oval-sign img { width: 200px; -webkit-transform: rotate(-2deg); transform: rotate(-2deg); }
+/* 탭: 접시 테 같은 두 줄 리본, 로고 양옆으로 나눔 */
+.blue-top .tabs { max-width: 940px; width: calc(100% - 32px); margin: -2px auto 0; padding: 0 10px; height: 46px; -webkit-align-items: center; align-items: center; background: var(--cream2); border-radius: 16px; box-shadow: inset 0 0 0 3px var(--cream2), inset 0 0 0 4.5px rgba(11,80,238,.55), 0 8px 18px rgba(10,40,120,.22); }
+.blue-top .tabs a { position: relative; margin: 0 4px; padding: 6px 10px; border-radius: 0; background: none !important; box-shadow: none !important; color: var(--navy); font-size: 16px; opacity: .78; }
+.blue-top .tabs a.on { color: var(--blue); opacity: 1; }
+.blue-top .tabs a.on::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 0; height: 4px; border-radius: 4px; background: var(--blue); }
+.blue-top .tabs a:hover { opacity: 1; }
+.tab-gap { -webkit-flex: none; flex: none; width: 200px; }
+/* 표지 */
+.page[data-page="top"] .when { display: none; }
+.plate-when { display: none; }
+.page[data-page="top"] .btns .pill { margin: 0 10px; font-size: 19px; padding: 17px 30px; }
+.pill-pink { background: #fff; color: var(--blue); }
+.pill { box-shadow: 0 0 0 2px var(--blue), 0 10px 18px rgba(10,40,120,.28); }
+.pg-dots { background: rgba(255,249,238,.95); box-shadow: 0 6px 14px rgba(10,40,120,.25); }
+.pg-arrow { box-shadow: 0 6px 14px rgba(10,40,120,.25); border: 3px solid var(--cream2); background: var(--cream2); }
+@media (min-width: 720px) {
+  .page[data-page="top"] .hero { --pw: calc((100vh - 240px) * 1.39); padding-top: 26px; }
+  .page[data-page="top"] .plate-in { top: 17%; bottom: 19%; }
+  .page[data-page="top"] .tagline { margin-top: 0; font-size: 12px; letter-spacing: .32em; }
+  .page[data-page="top"] .title { font-size: 92px; margin-top: 12px; letter-spacing: .01em; text-shadow: 4px 5px 0 rgba(11,80,238,.14); }
+  .page[data-page="top"] .sub { font-size: 26px; margin-top: 8px; color: var(--navy); }
+  .page[data-page="top"] .plate-body { font-size: 16px; margin-top: 14px; }
+  .plate-when { display: block; margin-top: 14px; font-size: 14px; font-weight: 900; color: var(--blue); letter-spacing: .02em; }
+  .plate-when b { display: inline-block; margin-right: 8px; padding: 3px 10px 2px; border-radius: 8px; background: var(--blue); color: #fff; font-family: var(--f-round); font-weight: 400; }
+  .page[data-page="top"] .btns { margin-top: -38px; }
+  .page[data-page="top"] .basket { width: 210px; bottom: 54px; margin-left: calc(var(--pw) * -0.6); -webkit-transform: rotate(-14deg); transform: rotate(-14deg); }
+  .page[data-page="top"] .cutlery { width: 270px; bottom: 18px; margin-left: calc(var(--pw) * 0.36); -webkit-transform: rotate(6deg); transform: rotate(6deg); }
+}
+@media (min-width: 720px) and (max-height: 820px) {
+  .blue-top .top-hang { height: 80px; } .blue-top .awning { height: 80px; } .blue-top .aw-stripes { height: 50px; } .blue-top .aw-scallop { top: 49px; }
+  .blue-top .oval-sign { width: 168px; margin-left: -84px; top: 6px; } .blue-top .oval-sign img { width: 168px; }
+  .tab-gap { width: 170px; }
+  .page[data-page="top"] .title { font-size: 80px; }
+}
+@media (min-width: 720px) and (max-height: 760px) {
+  .page[data-page="top"] .title { font-size: 68px; } .page[data-page="top"] .sub { font-size: 21px; } .plate-when { margin-top: 8px; font-size: 12px; }
+}
+@media (max-width: 719px) {
+  .blue-top .top-hang { height: 96px; } .blue-top .awning { height: 62px; }
+  .blue-top .aw-stripes { height: 36px; background: repeating-linear-gradient(90deg, var(--blue) 0 44px, var(--cream2) 44px 88px); }
+  .blue-top .aw-scallop { top: 35px; height: 22px; background: radial-gradient(circle at 22px 0, var(--blue) 21px, transparent 22px) 0 0 / 88px 22px repeat-x, radial-gradient(circle at 22px 0, var(--cream2) 21px, transparent 22px) 44px 0 / 88px 22px repeat-x; }
+  .blue-top .oval-sign { width: 150px; margin-left: -75px; top: 6px; } .blue-top .oval-sign img { width: 150px; }
+  .tab-gap { display: none; }
+  .blue-top .tabs { height: 42px; margin-top: 0; width: calc(100% - 16px); }
+  .blue-top .tabs a { font-size: 14px; padding: 6px 7px; margin: 0 2px; }
+  .page[data-page="top"] .when { display: table; }
+}
+@media (min-width: 720px) {
+  .blue-top .tabs { -webkit-justify-content: center; justify-content: center; }
+  .blue-top .tabs a[href="#top"] { display: none; }
+  .blue-top .tabs a { -webkit-flex: 1; flex: 1; text-align: center; margin: 0 !important; }
+  .blue-top .tabs a.on::after { left: 50%; right: auto; width: 34px; margin-left: -17px; }
+}
