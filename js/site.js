@@ -193,7 +193,7 @@
   function fit(page) {
     var f = page.firstElementChild; if (!f) return;
     page.className = page.className.replace(/ ?fitted/g, "");
-    var h = f.offsetHeight, H = page.clientHeight - (parseFloat(window.getComputedStyle(page).paddingTop) || 0), desk = window.innerWidth >= 720;
+    var h = f.offsetHeight, cs = window.getComputedStyle(page), H = page.clientHeight - (parseFloat(cs.paddingTop) || 0) - (parseFloat(cs.paddingBottom) || 0), desk = window.innerWidth >= 720;
     var sc = Math.min(1, H / h), min = desk ? 0.5 : 0.78;
     if (sc < 1 && sc >= min) { f.style.setProperty("--s", sc.toFixed(3)); page.className += " fitted"; }
     else f.style.removeProperty("--s");

@@ -726,3 +726,8 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
   .page[data-page="top"] .intro { margin-top: 8px; }
 }
 @media (min-width: 720px) { .page[data-page="top"] .hero { padding-bottom: 28px; } }
+/* 장 넘김 바 자리는 확대·축소와 상관없이 비워 둠 */
+.page { padding-bottom: 72px; }
+.page > .fit { padding-bottom: 16px; }
+.page[data-page="top"] { padding-bottom: 0; }
+@media (max-width: 719px) { .page { padding-bottom: 76px; } }
