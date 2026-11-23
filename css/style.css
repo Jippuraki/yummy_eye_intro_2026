@@ -558,3 +558,22 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 .note b, .note p { border-color: rgba(11,80,238,.35); }
 .slot b, .slot span { border-color: rgba(11,80,238,.45); }
 .chef-photo { background: var(--blue-soft); }
+/* 11/23 진서: 차양은 살리고, 로고는 메인 비주얼의 파란 타원 스티커(피그마 689:38720) */
+.top.blue-top { display: block; max-width: none; padding: 0; }
+.blue-top .top-hang { position: relative; height: 104px; z-index: 2; background: transparent; }
+.blue-top .awning { top: 0; height: 84px; }
+.blue-top .aw-cap { display: none; }
+.blue-top .aw-stripes { top: 0; height: 64px; -webkit-clip-path: none; clip-path: none; }
+.blue-top .aw-scallop { top: 64px; }
+.blue-top .oval-sign { position: absolute; left: 50%; top: 4px; width: 210px; margin-left: -105px; z-index: 3; }
+.blue-top .oval-sign img { width: 210px; height: auto; -webkit-transform: rotate(-3deg); transform: rotate(-3deg); -webkit-filter: drop-shadow(3px 6px 4px rgba(10,40,120,.3)); filter: drop-shadow(3px 6px 4px rgba(10,40,120,.3)); }
+.blue-top .tabs { position: relative; z-index: 1; max-width: 900px; margin: -6px auto 0; width: calc(100% - 24px); }
+@media (min-width: 720px) and (max-height: 820px) {
+  .blue-top .top-hang { height: 86px; } .blue-top .awning { height: 70px; } .blue-top .aw-stripes { height: 52px; } .blue-top .aw-scallop { top: 52px; }
+  .blue-top .oval-sign { width: 170px; margin-left: -85px; top: 2px; } .blue-top .oval-sign img { width: 170px; }
+}
+@media (max-width: 719px) {
+  .blue-top .top-hang { height: 78px; } .blue-top .awning { height: 58px; } .blue-top .aw-stripes { height: 40px; } .blue-top .aw-scallop { top: 40px; }
+  .blue-top .oval-sign { width: 136px; margin-left: -68px; top: 2px; } .blue-top .oval-sign img { width: 136px; }
+  .blue-top .tabs { margin-top: -4px; }
+}
