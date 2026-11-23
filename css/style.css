@@ -439,3 +439,34 @@ body { display: -webkit-flex; display: flex; -webkit-flex-direction: column; fle
   .page > .fit > .sec.counter { max-width: 720px; }
 }
 @media (min-width: 1240px) { .page > .fit > .sec { max-width: 1180px; } }
+
+/* 11/23 저녁: 이용 안내 넓게 + 부스 그림 순서 + 자주 묻는 질문 따로 한 장 */
+.booth { margin: 4px 0 0; background: #FFF3DE; border: 3px solid var(--ketchup); border-radius: 16px; padding: 10px 10px 4px; }
+.booth svg { display: block; width: 100%; height: auto; }
+.bk-t { font-family: var(--f-round, inherit); font-size: 30px; font-weight: 900; }
+.bk-s { font-family: var(--f-round, inherit); font-size: 15px; font-weight: 900; }
+.bk-pin circle { fill: var(--ketchup); stroke: #fff; stroke-width: 4; }
+.bk-pin text { fill: #fff; font-size: 24px; font-weight: 900; text-anchor: middle; font-family: var(--f-round, inherit); }
+.faq-more { margin-top: 12px; text-align: right; }
+.faq-more a { color: var(--ketchup); font-weight: 900; font-size: 15px; }
+#faq .faq details p { display: block; }
+#faq .faq summary { cursor: default; }
+#faq .faq summary::after { display: none; }
+@media (min-width: 720px) {
+  .page > .fit > #guide.sec { max-width: 1500px; margin-left: 24px; margin-right: 24px; padding-left: 36px; padding-right: 36px; }
+  #guide .col-main { -webkit-flex: 1.7; flex: 1.7; }
+  #guide .col-side { -webkit-flex: 1; flex: 1; }
+  #guide .col-side .info { margin-top: 18px; }
+  #guide .steps { display: -webkit-flex; display: flex; margin: 4px -4px 0; }
+  #guide .steps li { -webkit-flex: 1; flex: 1; margin: 8px 4px 0; padding: 44px 11px 11px; }
+  #guide .steps li::before { left: 10px; top: 9px; }
+  #guide .steps span { font-size: 12.5px; }
+  #faq .faq { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; margin: 8px -6px 0; }
+  #faq .faq details { width: calc(50% - 12px); margin: 6px; }
+  #faq .faq summary { font-size: 16px; padding: 14px 16px 6px; }
+  #faq .faq details p { font-size: 14px; }
+  .page > .fit > #faq.sec { max-width: 1100px; }
+}
+@media (min-width: 1240px) {
+  .page > .fit > #guide.sec { margin-left: auto; margin-right: auto; }
+}
