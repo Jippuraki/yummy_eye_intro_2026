@@ -423,3 +423,19 @@ body { display: -webkit-flex; display: flex; -webkit-flex-direction: column; fle
   .slots-g .slot { width: 20%; } .slots-g .slot span { min-height: 70px; }
 }
 @media (min-width: 720px) { .ln.fridge { display: block; } .fridge h3 { display: inline-block; } .fridge h3 span { display: inline; margin-left: 6px; } }
+
+/* ── 11/23 진서: 장마다 테이블(레드 깅엄 식탁보) 사진 위에 크림 종이를 올린 모양 + 지붕이 아래 베이지 띠와 겹치게 */
+.top-hang { z-index: 2; }
+.tabs { z-index: 1; margin-top: -16px; padding-top: 20px; box-shadow: 0 3px 6px rgba(90,26,20,.12); }
+.page { background: #E7E1D6 url("../assets/bg-gingham-red.jpg") center / cover; }
+.page > .fit > .sec { position: relative; background: var(--cream); border-radius: 16px; box-shadow: 0 10px 24px rgba(60,20,10,.32), 0 0 0 6px rgba(255,253,248,.55); }
+.page > .fit > .sec::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 10px; border-radius: 16px 16px 0 0; background: repeating-linear-gradient(90deg, var(--ketchup) 0 14px, transparent 14px 28px); opacity: .5; }
+.page > .fit > .sec:first-child { margin-top: 18px; }
+.page > .fit > .sec { margin-left: 12px; margin-right: 12px; padding-bottom: 24px; }
+.page > .fit > footer { color: #fff; opacity: 1; border-top: 0; text-shadow: 0 1px 3px rgba(0,0,0,.6); font-weight: 900; }
+@media (min-width: 720px) {
+  .tabs { margin-top: -14px; padding-top: 18px; }
+  .page > .fit > .sec { margin: 22px auto 0; padding: 22px 50px 26px; }
+  .page > .fit > .sec.counter { max-width: 720px; }
+}
+@media (min-width: 1240px) { .page > .fit > .sec { max-width: 1180px; } }
