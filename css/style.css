@@ -760,3 +760,6 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 @media (min-width: 720px) {
   .page[data-page="top"] .hero { --pw: min(calc((var(--H) - 128px) * 1.39), calc(100vw - 520px), 900px); --side: min(200px, calc((100vw - var(--pw)) / 2 - 116px)); }
 }
+
+/* 표지 접시 글씨: 접시가 비스듬히(아래 테가 두꺼운 원근) 그려져 있어 수치상 가운데면 위로 쏠려 보임 → 눈으로 보는 가운데로 살짝 내림 (진서 11/23) */
+.page[data-page="top"] .plate-in { -webkit-transform: translateY(3%); transform: translateY(3%); }
