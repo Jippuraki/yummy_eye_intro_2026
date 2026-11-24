@@ -228,6 +228,7 @@ section[id] { scroll-margin-top: 58px; }
 /* 빈자리 박스: 자료를 받기 전까지 무엇이 들어갈지 적어둔다 */
 .slots { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; margin: 12px -5px 0; }
 .slot { width: 100%; padding: 5px; }
+a.slot { display: block; color: inherit; text-decoration: none; }
 .slots-4 .slot, .slots-g .slot { width: 50%; }
 .slot > * { display: block; }
 .slot b, .slot span { background: rgba(255,255,255,.6); }
