@@ -19,7 +19,7 @@
     Beverage: { board: "Yummy Eye Beverage Fridge", pack: "음료 팩 포장",    color: "#5499D3", cls: "c-beverage" }
   };
 
-  var state = { cat: "Deli", taste: null, atc: false };
+  var state = { cat: "Deli", taste: null, atc: false, cg: "Deli" };
 
   function $(id) { return document.getElementById(id); }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
@@ -120,6 +120,37 @@
   }
   function renderMenu() { renderCatTabs(); renderTasteFilter(); renderBoard(); if (typeof refit === "function" && pageEls) fit($("menu").parentNode.parentNode); }
 
+  // ── 카탈로그: 코너별로 라인마다 레시피 카드 (맛·강도·셰잎·프레임·렌즈·키워드)
+  function renderCatalog() {
+    var t = "";
+    each(CATEGORY_ORDER, function (c) {
+      t += '<button type="button" class="cat-tab ' + CATS[c].cls + (state.cg === c ? " on" : "") + '" data-cg="' + c + '"><b>' + c.toUpperCase() + "</b><small>" + CATS[c].pack + "</small></button>";
+    });
+    $("cg-tabs").innerHTML = t;
+    var cat = state.cg, h = "";
+    for (var key in LINES) {
+      var L = LINES[key];
+      if (L.category !== cat) continue;
+      var cards = "";
+      each(MODELS, function (m) {
+        if (m.line !== key) return;
+        var lv = m.level ? "●●●".slice(0, m.level) + "○○○".slice(0, 3 - m.level) : "";
+        cards += '<button type="button" class="cg-card" data-id="' + m.id + '">' +
+          '<span class="cg-top"><span>' + modelCode(m).code + "</span>" + (isAtc(m) ? "<em>실물 시식</em>" : "") + "</span>" +
+          '<img src="assets/models/front/' + m.id + '.png" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">' +
+          "<b>" + esc(m.name) + "</b><small>" + esc(m.ko) + "</small>" +
+          '<span class="cg-taste">' + TASTES[m.tastes[0]].ko + " · " + TASTES[m.tastes[1]].ko + (lv ? " <i>" + lv + "</i>" : "") + "</span>" +
+          '<dl>' + row("셰잎", m.shapeKo || L.shapeKo) + row("프레임", m.frame) + row("렌즈", m.lens) + "</dl>" +
+          '<span class="cg-kw">' + esc(m.keywords.map(function (k) { return "#" + k.replace(/\s/g, ""); }).join(" ")) + "</span></button>";
+      });
+      if (cards) h += '<section class="cg-line"><h3>' + esc(cat + " · " + key) + "<span>" + esc(L.ko) + " · " + esc(L.shapeKo) + " · " + esc(L.type) + "</span></h3>" + '<div class="cg-grid">' + cards + "</div></section>";
+    }
+    var box = $("cg-list");
+    box.className = "cg " + CATS[cat].cls;
+    box.innerHTML = h;
+    if (typeof refit === "function" && pageEls) fit($("catalog").parentNode.parentNode);
+  }
+
   // ── 모델 상세 시트
   function row(k, v) { return v ? "<div><dt>" + k + "</dt><dd>" + esc(v) + "</dd></div>" : ""; }
   function openModel(id) {
@@ -157,6 +188,7 @@
   }
   document.addEventListener("click", function (e) {
     var t;
+    if ((t = closest(e.target, "data-cg"))) { state.cg = t.getAttribute("data-cg"); renderCatalog(); return; }
     if ((t = closest(e.target, "data-cat"))) { state.cat = t.getAttribute("data-cat"); renderMenu(); return; }
     if ((t = closest(e.target, "data-taste"))) { state.taste = t.getAttribute("data-taste") || null; renderMenu(); return; }
     if ((t = closest(e.target, "data-id"))) { openModel(t.getAttribute("data-id")); return; }
@@ -169,7 +201,7 @@
   // ── 좌우로 넘기는 장: 탭·화살표·점·키보드·#링크가 모두 같은 goTo를 쓴다
   var pagesEl = $("pages"), pageEls = [], cur = 0;
   each(pagesEl.children, function (el) { if (el.className === "page") pageEls.push(el); });
-  var PAGE_NAMES = { top: "표지", guide: "이용 안내", faq: "자주 묻는 질문", menu: "메뉴판", chef: "셰프", gallery: "화보", counter: "계산대" };
+  var PAGE_NAMES = { top: "표지", guide: "이용 안내", faq: "자주 묻는 질문", menu: "메뉴판", catalog: "카탈로그", chef: "셰프", gallery: "화보", counter: "계산대" };
   function pageOf(el) { while (el && el !== document) { var k = pageEls.indexOf(el); if (k >= 0) return k; el = el.parentNode; } return -1; }
   // 책장 넘기기: 앞으로 가면 지금 장이 왼쪽 모서리를 축으로 넘어가고, 뒤로 가면 앞 장이 다시 덮인다
   var turning = false;
@@ -269,6 +301,7 @@
   renderGallerySlots();
   renderTastes();
   renderMenu();
+  renderCatalog();
   pageEls[0].className = "page cur"; setCur(0); fit(pageEls[0]);
   var mh = /^#m=([\w-]+)/.exec(location.hash), hh = /^#([\w-]+)$/.exec(location.hash);
   if (mh && byId(mh[1])) {

@@ -764,3 +764,26 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 
 /* 표지 접시 글씨: 접시가 비스듬히(아래 테가 두꺼운 원근) 그려져 있어 수치상 가운데면 위로 쏠려 보임 → 눈으로 보는 가운데로 살짝 내림 (진서 11/23) */
 .page[data-page="top"] .plate-in { -webkit-transform: translateY(3%); transform: translateY(3%); }
+
+/* ── 카탈로그: 레시피 카드 그리드 */
+.cg { --c: #C23228; margin-top: 16px; }
+.cg.c-fresh { --c: #009245; } .cg.c-beverage { --c: #5499D3; }
+.cg-line { margin-top: 18px; }
+.cg-line h3 { margin: 0 0 8px; padding-bottom: 6px; border-bottom: 3px solid var(--c); color: var(--c); font-family: var(--f-round); font-size: 18px; }
+.cg-line h3 span { display: block; margin-top: 2px; font-family: inherit; font-size: 12px; font-weight: 700; color: #5A1A14; opacity: .8; }
+.cg-grid { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; margin: 0 -5px; }
+.cg-card { width: calc(50% - 10px); margin: 5px; padding: 0 0 10px; border: 2px solid var(--c); border-radius: 12px; background: #fff; text-align: left; overflow: hidden; color: #5A1A14; box-shadow: 2px 4px 0 rgba(0,0,0,.08); }
+.cg-top { white-space: nowrap; display: -webkit-flex; display: flex; -webkit-justify-content: space-between; justify-content: space-between; padding: 5px 10px; background: var(--c); color: #fff; font-size: 11px; font-weight: 900; letter-spacing: .03em; }
+.cg-top em { font-size: 10px; font-style: normal; padding: 0 6px; border-radius: 8px; background: #FFCC4D; color: #5A1A14; }
+.cg-card img { display: block; width: 86%; height: 64px; margin: 8px auto 4px; object-fit: contain; }
+.cg-card b { display: block; padding: 0 10px; font-family: var(--f-round); font-size: 16px; line-height: 1.15; color: var(--c); }
+.cg-card small { display: block; padding: 0 10px; font-size: 12px; font-weight: 700; }
+.cg-taste { display: block; margin: 6px 10px 0; font-size: 12px; font-weight: 900; }
+.cg-taste i { font-style: normal; letter-spacing: 1px; color: var(--c); }
+.cg-card dl { margin: 4px 10px 0; font-size: 11px; line-height: 1.45; }
+.cg-card dl div { display: -webkit-flex; display: flex; }
+.cg-card dt { -webkit-flex: none; flex: none; width: 40px; opacity: .65; }
+.cg-card dd { margin: 0; }
+.cg-kw { display: block; margin: 5px 10px 0; font-size: 11px; color: var(--c); font-weight: 700; word-break: keep-all; }
+@media (min-width: 720px) { .cg-card { width: calc(33.333% - 10px); } }
+@media (min-width: 1100px) { .cg-card { width: calc(25% - 10px); } .cg-card img { height: 80px; } }
