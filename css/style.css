@@ -790,3 +790,11 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 
 /* 셰프 소개: 캐릭터 그림 대신 작가 본인 소개 한 줄 (11/26) */
 .chef-hi { margin-top: 8px; font-size: 14px; line-height: 1.6; font-weight: 700; color: var(--demi, #5A1A14); }
+
+/* 실제 부스 사진 · 작업 과정 사진 (11/26) */
+.photos, .proc { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; margin: 14px -5px 0; }
+.photos figure, .proc figure { width: calc(33.333% - 10px); margin: 5px; background: #fff; border: 3px solid var(--ketchup, #C3302A); border-radius: 12px; overflow: hidden; }
+.photos img, .proc img { display: block; width: 100%; height: 160px; -o-object-fit: cover; object-fit: cover; }
+.photos figcaption, .proc figcaption { padding: 6px 10px 8px; font-size: 12px; line-height: 1.45; font-weight: 700; color: var(--demi, #5A1A14); }
+.proc figcaption b { display: block; color: var(--ketchup, #C3302A); font-size: 13px; }
+@media (max-width: 640px) { .photos figure, .proc figure { width: calc(50% - 10px); } .photos img, .proc img { height: 130px; } }
