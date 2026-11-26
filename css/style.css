@@ -787,3 +787,6 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 .cg-kw { display: block; margin: 5px 10px 0; font-size: 11px; color: var(--c); font-weight: 700; word-break: keep-all; }
 @media (min-width: 720px) { .cg-card { width: calc(33.333% - 10px); } }
 @media (min-width: 1100px) { .cg-card { width: calc(25% - 10px); } .cg-card img { height: 80px; } }
+
+/* 셰프 소개: 캐릭터 그림 대신 작가 본인 소개 한 줄 (11/26) */
+.chef-hi { margin-top: 8px; font-size: 14px; line-height: 1.6; font-weight: 700; color: var(--demi, #5A1A14); }
