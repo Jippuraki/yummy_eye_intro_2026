@@ -2,13 +2,13 @@
    구형 Safari 호환: CSS 변수·flex·grid 기본만, 최신 문법(:has, gap 의존 레이아웃 등) 피함. */
 
 /* 서체: 채이 활짝 · 770 Balsa — 이 페이지에 쓰는 글자만 남긴 서브셋 (tools/subset-fonts.sh) */
-@font-face { font-family: "YE Display"; font-weight: 500; font-display: swap; src: url("../fonts/display-500.woff?v=1126d") format("woff"); }
-@font-face { font-family: "YE Display"; font-weight: 900; font-display: swap; src: url("../fonts/display-900.woff?v=1126d") format("woff"); }
+@font-face { font-family: "YE Display"; font-weight: 500; font-display: swap; src: url("../fonts/display-500.woff?v=1126f") format("woff"); }
+@font-face { font-family: "YE Display"; font-weight: 900; font-display: swap; src: url("../fonts/display-900.woff?v=1126f") format("woff"); }
 /* 팜플렛 영문 서체 대체(무료, 영문만): Cherry Bomb One(OFL) 둥근 제목 · Yellowtail(Apache) 필기체 — 테스트 웹과 같은 파일 */
 @font-face { font-family: "YE Round"; font-display: swap; src: url("../fonts/CherryBombOne.woff") format("woff"); unicode-range: U+0020-007E, U+00A0-00FF, U+2013-201D, U+2022, U+2026; }
 @font-face { font-family: "YE Hand"; font-display: swap; src: url("../fonts/Yellowtail.woff") format("woff"); unicode-range: U+0041-005A, U+0061-007A, U+0020-0040, U+005B-0060, U+007B-007E, U+2013-201D; }
 @font-face { font-family: "YE Body"; font-weight: 500; font-display: swap; src: url("../fonts/GmarketSansMedium.woff") format("woff"); }
-@font-face { font-family: "YE Script"; font-display: swap; src: url("../fonts/script.woff?v=1126d") format("woff"); }
+@font-face { font-family: "YE Script"; font-display: swap; src: url("../fonts/script.woff?v=1126f") format("woff"); }
 
 :root {
   --ketchup: #C3302A; --red: #C23228; --cream: #FFF8EC; --plate: #FFFDF8;
@@ -827,3 +827,4 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 .inspo figure { -webkit-flex: 1; flex: 1; margin: 0 4px; min-width: 0; }
 .st-card .inspo img { height: 120px; margin: 0; background: #fff; -o-object-fit: cover; object-fit: cover; }
 .inspo figcaption { margin-top: 4px; font-size: 11px; line-height: 1.3; text-align: center; opacity: .8; }
+.st-next { margin-top: 18px; text-align: center; }
