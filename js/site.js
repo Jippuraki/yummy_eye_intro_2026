@@ -201,7 +201,7 @@
   // ── 좌우로 넘기는 장: 탭·화살표·점·키보드·#링크가 모두 같은 goTo를 쓴다
   var pagesEl = $("pages"), pageEls = [], cur = 0;
   each(pagesEl.children, function (el) { if (el.className === "page") pageEls.push(el); });
-  var PAGE_NAMES = { top: "표지", guide: "이용 안내", faq: "자주 묻는 질문", menu: "메뉴판", catalog: "카탈로그", chef: "셰프", gallery: "화보", counter: "계산대" };
+  var PAGE_NAMES = { top: "표지", story: "이야기", guide: "이용 안내", faq: "자주 묻는 질문", menu: "메뉴판", catalog: "카탈로그", chef: "셰프", gallery: "화보", counter: "계산대" };
   function pageOf(el) { while (el && el !== document) { var k = pageEls.indexOf(el); if (k >= 0) return k; el = el.parentNode; } return -1; }
   // 책장 넘기기: 앞으로 가면 지금 장이 왼쪽 모서리를 축으로 넘어가고, 뒤로 가면 앞 장이 다시 덮인다
   var turning = false;

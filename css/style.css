@@ -798,3 +798,13 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 .photos figcaption, .proc figcaption { padding: 6px 10px 8px; font-size: 12px; line-height: 1.45; font-weight: 700; color: var(--demi, #5A1A14); }
 .proc figcaption b { display: block; color: var(--ketchup, #C3302A); font-size: 13px; }
 @media (max-width: 640px) { .photos figure, .proc figure { width: calc(50% - 10px); } .photos img, .proc img { height: 130px; } }
+
+/* 00 이야기: Q&A 카드 (사진 섞어서) */
+.story { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; margin: 14px -6px 0; }
+.st-card { width: calc(50% - 12px); margin: 6px; padding: 16px 18px; background: var(--plate, #FFF8EC); border: 2px solid rgba(11,80,238,.35); border-radius: 14px; }
+.st-card b { display: block; margin-bottom: 6px; font-family: var(--f-round, inherit); font-size: 18px; color: var(--ketchup, #C3302A); }
+.st-card p { font-size: 14px; line-height: 1.7; font-weight: 700; color: var(--demi, #5A1A14); }
+.st-card img { display: block; width: 100%; height: 170px; margin-bottom: 12px; border-radius: 10px; -o-object-fit: cover; object-fit: cover; }
+.st-wide { width: calc(100% - 12px); display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; }
+.st-wide img { -webkit-flex: none; flex: none; width: 42%; height: 200px; margin: 0 18px 0 0; }
+@media (max-width: 720px) { .st-card { width: calc(100% - 12px); } .st-wide { display: block; } .st-wide img { width: 100%; margin: 0 0 12px; } }
