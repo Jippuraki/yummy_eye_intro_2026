@@ -839,3 +839,7 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 /* 메뉴판 라벨: 맛 표시가 카드 밖으로 넘치지 않게 줄바꿈, 강도 점은 한 덩어리 */
 .d-label i, .f-label i, .b-label i { white-space: normal; max-width: 100%; }
 .d-label .lv, .f-label .lv, .b-label .lv { white-space: nowrap; display: inline-block; }
+/* 방명록 장: 아이패드에서 손으로 쓰기 좋게 크게 */
+.gb-frame { margin-top: 12px; border: 3px solid var(--blue, #2550E6); border-radius: 18px; overflow: hidden; background: #5499D3; }
+.gb-frame iframe { display: block; width: 100%; height: 620px; border: 0; }
+@media (max-width: 720px) { .gb-frame iframe { height: 1100px; } }
