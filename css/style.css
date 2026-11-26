@@ -808,3 +808,8 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 .st-wide { width: calc(100% - 12px); display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; }
 .st-wide img { -webkit-flex: none; flex: none; width: 42%; height: 200px; margin: 0 18px 0 0; }
 @media (max-width: 720px) { .st-card { width: calc(100% - 12px); } .st-wide { display: block; } .st-wide img { width: 100%; margin: 0 0 12px; } }
+
+/* 화보 10장: 포스터 비율 그대로, 누르면 시트에 크게 */
+.slot.lb { border: 0; background: none; cursor: pointer; -webkit-appearance: none; }
+.slot.lb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 2px 8px rgba(43,20,15,.25); }
+.lb-big { display: block; width: 100%; height: auto; border-radius: 10px; margin-top: 30px; }

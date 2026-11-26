@@ -281,23 +281,22 @@
     if (e.keyCode === 39) goTo(cur + 1);
   });
 
-  // 화보 빈자리: 라인별 대표 컷 1장씩 (사진을 받으면 assets/gallery/<라인>.jpg로 교체)
-  var STICKERS = { Dango: "deli-dango", Omurice: "deli-omurice", Sushi: "deli-sushi", Tteokbokki: "deli-tteokbokki",
-    Vegie: "fresh-vegie", Fruit: "fresh-fruit", Meat: "fresh-meat", Sashimi: "fresh-sashimi",
-    Juice: "bev-juice", Milk: "bev-milk", Wine: "bev-wine", Coffee: "bev-coffee" };
+  // 화보: 확정 10장 (assets/gallery/01~10.jpg), 누르면 시트에 크게
+  var LOOKBOOK = ["Omurice-01 Omelet", "Omurice-02 Ketchup Holic", "Dango-03 Buldak", "Dango-04 Mint Choco", "Dango Mint Choco",
+    "Juice-01 Ice dongdong", "Juice-01 Ice dongdong", "Fruit-01 Apple", "Vegi-01 Tomato", "Fruit-03 Melon"];
+  function lbSrc(i) { return "assets/gallery/" + (i < 9 ? "0" : "") + (i + 1) + ".jpg"; }
   function renderGallerySlots() {
     var h = "";
-    each(CATEGORY_ORDER, function (c) {
-      for (var key in LINES) {
-        if (LINES[key].category !== c) continue;
-        var st = STICKERS[key] ? '<img class="slot-st" loading="lazy" src="assets/stickers/' + STICKERS[key] + '.svg" alt="">' : "";
-        h += '<div class="slot slot-ln">' + st + "<b>" + c + " - " + key + "</b><span>" + esc(LINES[key].ko) + " 라인 대표 모델을 쓴 AI 모델 컷이 들어갈 자리예요.</span></div>";
-      }
-    });
+    each(LOOKBOOK, function (t, i) { h += '<button type="button" class="slot lb" data-lb="' + i + '"><img src="' + lbSrc(i) + '" alt="YUMMY EYE 화보 ' + esc(t) + '"></button>'; });
     $("gallery-slots").innerHTML = h;
   }
-
-  // 시작
+  document.addEventListener("click", function (e) {
+    var t = closest(e.target, "data-lb"); if (!t) return;
+    var i = +t.getAttribute("data-lb");
+    $("sheet-body").innerHTML = '<img class="lb-big" src="' + lbSrc(i) + '" alt="YUMMY EYE 화보 ' + esc(LOOKBOOK[i]) + '">';
+    $("sheet").className = "sheet";
+    document.body.style.overflow = "hidden";
+  });
   renderGallerySlots();
   renderTastes();
   renderMenu();
