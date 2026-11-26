@@ -816,3 +816,9 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 .slot.lb { border: 0; background: none; cursor: pointer; -webkit-appearance: none; }
 .slot.lb img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 2px 8px rgba(43,20,15,.25); }
 .lb-big { display: block; width: 100%; height: auto; border-radius: 10px; margin-top: 30px; }
+
+/* 셰프 사진: 작가 본인 사진을 동그랗게 꽉 채움 */
+.chef-me img { width: 100%; height: 100%; margin: 0; -o-object-fit: cover; object-fit: cover; }
+.chef { -webkit-flex-wrap: wrap; flex-wrap: wrap; }
+.chef .chef-me { width: 120px; height: 120px; margin: 0 auto 12px; }
+.chef .chef-me + .chef-txt { width: 100%; margin-left: 0; }
