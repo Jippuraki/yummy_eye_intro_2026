@@ -828,3 +828,11 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
 .st-card .inspo img { height: 120px; margin: 0; background: #fff; -o-object-fit: cover; object-fit: cover; }
 .inspo figcaption { margin-top: 4px; font-size: 11px; line-height: 1.3; text-align: center; opacity: .8; }
 .st-next { margin-top: 18px; text-align: center; }
+/* 폰 화면: 맛 칩 줄과 '실물 시식만'이 겹쳐 보이지 않게 두 줄로, 카탈로그 코드·실물 배지가 넘치지 않게 줄바꿈 */
+@media (max-width: 560px) {
+  .filters { -webkit-flex-wrap: wrap; flex-wrap: wrap; }
+  .chips { -webkit-flex: none; flex: none; width: 100%; }
+  .chip-atc { margin: 6px 0 0; }
+  .cg-top { -webkit-flex-wrap: wrap; flex-wrap: wrap; white-space: normal; letter-spacing: 0; }
+  .cg-top em { margin-top: 2px; }
+}
