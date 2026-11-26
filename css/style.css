@@ -836,3 +836,6 @@ body { background: #CFE6F6 url("../assets/bg-gingham-blue.jpg") center / cover; 
   .cg-top { -webkit-flex-wrap: wrap; flex-wrap: wrap; white-space: normal; letter-spacing: 0; }
   .cg-top em { margin-top: 2px; }
 }
+/* 메뉴판 라벨: 맛 표시가 카드 밖으로 넘치지 않게 줄바꿈, 강도 점은 한 덩어리 */
+.d-label i, .f-label i, .b-label i { white-space: normal; max-width: 100%; }
+.d-label .lv, .f-label .lv, .b-label .lv { white-space: nowrap; display: inline-block; }

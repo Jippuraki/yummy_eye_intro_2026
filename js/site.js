@@ -148,7 +148,6 @@
     var box = $("cg-list");
     box.className = "cg " + CATS[cat].cls;
     box.innerHTML = h;
-    if (typeof refit === "function" && pageEls) fit($("catalog").parentNode.parentNode);
   }
 
   // ── 모델 상세 시트
@@ -300,7 +299,7 @@
   renderGallerySlots();
   renderTastes();
   renderMenu();
-  renderCatalog();
+  if ($("cg-list")) renderCatalog();
   pageEls[0].className = "page cur"; setCur(0); fit(pageEls[0]);
   var mh = /^#m=([\w-]+)/.exec(location.hash), hh = /^#([\w-]+)$/.exec(location.hash);
   if (mh && byId(mh[1])) {
